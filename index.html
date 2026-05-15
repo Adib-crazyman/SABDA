@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SABDA v7.0 | Strategi Advokasi Berencana dengan Adib</title>
+    <style>
+        /* === TEMA UI PROFESIONAL & CLEAN === */
+        :root {
+            --primary: #0284c7; /* Biru BKKBN */
+            --secondary: #16a34a; /* Hijau BKKBN */
+            --accent: #f59e0b; /* Kuning Peringatan */
+            --bg-light: #f8fafc;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --border: #cbd5e1;
+            --danger: #e11d48;
+            --success: #15803d;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, sans-serif; }
+        body { background: var(--bg-light); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
+
+        /* === DASHBOARD UTAMA === */
+        #main-dashboard { padding-bottom: 80px; }
+        header { background: linear-gradient(135deg, #0f172a, var(--primary)); padding: 60px 20px; text-align: center; color: white; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; box-shadow: 0 10px 30px rgba(2, 132, 199, 0.3); }
+        header h1 { font-size: 42px; font-weight: 900; letter-spacing: -1px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); margin-bottom: 10px;}
+        header p { font-size: 16px; text-transform: uppercase; letter-spacing: 4px; color: #bae6fd; font-weight: 600;}
+        .tag-kementrian { display: inline-block; background: rgba(255,255,255,0.15); padding: 8px 25px; border-radius: 20px; margin-top: 20px; font-size: 14px; font-weight: bold; border: 1px solid rgba(255,255,255,0.3); backdrop-filter: blur(5px); }
+
+        .container { max-width: 1300px; margin: -30px auto 0; padding: 0 20px; display: grid; grid-template-columns: 1fr 340px; gap: 30px; position: relative; z-index: 10; }
+        @media (max-width: 900px) { .container { grid-template-columns: 1fr; } }
+
+        /* Grid Topik */
+        .topics-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
+        .topic-card { background: white; border: 1px solid var(--border); border-radius: 20px; padding: 25px 20px; text-align: center; cursor: pointer; transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.03); }
+        .topic-card:hover { transform: translateY(-8px); border-color: var(--primary); box-shadow: 0 15px 30px rgba(2, 132, 199, 0.15); }
+        .t-icon { font-size: 50px; margin-bottom: 15px; display: inline-block; transition: 0.3s; }
+        .topic-card:hover .t-icon { transform: scale(1.1) rotate(5deg); }
+        .t-title { font-weight: 800; font-size: 17px; color: var(--text-main); margin-bottom: 5px; }
+        .t-subtitle { font-size: 13px; color: var(--text-muted); font-weight: 600; background: #f1f5f9; padding: 4px 10px; border-radius: 10px; display: inline-block;}
+
+        /* Sidebar Profile */
+        .sidebar-card { background: white; border-radius: 20px; padding: 30px; border: 1px solid var(--border); box-shadow: 0 5px 15px rgba(0,0,0,0.03); margin-bottom: 25px; }
+        .progress-bg { width: 100%; height: 18px; background: #e2e8f0; border-radius: 10px; overflow: hidden; margin: 15px 0; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--secondary), var(--primary)); width: 0%; transition: width 0.8s ease; }
+
+        /* === IMMERSIVE WORKSPACE (TAMPILAN MODUL RAPI) === */
+        #workspace { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: #f8fafc; z-index: 2000; overflow-x: hidden; overflow-y: auto; }
+        .ws-header { background: white; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 15px rgba(0,0,0,0.05); }
+        .ws-header h2 { font-size: 26px; color: var(--primary); font-weight: 900; }
+        .btn-back { background: var(--text-main); color: white; border: none; padding: 10px 25px; border-radius: 12px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .btn-back:hover { background: var(--danger); }
+
+        .ws-content { max-width: 1000px; margin: 30px auto; padding: 0 20px; display: flex; flex-direction: column; gap: 20px; }
+        
+        /* Navigasi Horizontal Rapi */
+        .ws-tabs { display: flex; flex-wrap: wrap; gap: 10px; background: white; padding: 10px; border-radius: 15px; border: 1px solid var(--border); box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+        .tab-btn { flex: 1; min-width: 150px; padding: 15px; border: none; background: #f1f5f9; font-size: 15px; font-weight: 700; color: var(--text-muted); cursor: pointer; border-radius: 10px; transition: 0.3s; text-align: center; }
+        .tab-btn:hover { background: #e2e8f0; }
+        .tab-btn.active { background: var(--primary); color: white; box-shadow: 0 4px 10px rgba(2,132,199,0.3); }
+
+        /* Panel Konten */
+        .tab-panel { display: none; background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.04); border: 1px solid var(--border); animation: fadeIn 0.4s ease; }
+        .tab-panel.active { display: block; }
+        @keyframes fadeIn { from {opacity:0; transform:translateY(10px);} to {opacity:1; transform:translateY(0);} }
+
+        /* Teks Edukasi Rapi */
+        .content-title { font-size: 28px; margin-bottom: 25px; color: var(--text-main); font-weight: 900; border-bottom: 3px solid var(--bg-light); padding-bottom: 10px;}
+        .edu-text { font-size: 16px; line-height: 1.8; color: #334155; }
+        .edu-text h3 { color: var(--primary); font-size: 22px; margin: 30px 0 15px; font-weight: 800; }
+        .edu-text p { margin-bottom: 15px; text-align: justify; }
+        .edu-text ul, .edu-text ol { padding-left: 25px; margin-bottom: 20px; background: #f8fafc; padding: 20px 20px 20px 40px; border-radius: 15px; border: 1px solid var(--border);}
+        .edu-text li { margin-bottom: 8px; font-weight: 500; }
+        
+        .infobox { padding: 25px; border-radius: 15px; margin: 25px 0; border-left: 6px solid; font-weight: 500; font-size: 16px; line-height: 1.7; background: #f0f9ff; border-color: var(--primary); }
+        .info-red { background: #fef2f2; border-color: var(--danger); }
+        .info-green { background: #f0fdf4; border-color: var(--secondary); }
+
+        /* Lab & Kuis Rapi */
+        .lab-container { background: #f8fafc; padding: 35px; border-radius: 15px; border: 2px dashed var(--border); text-align: center; margin-bottom: 20px; }
+        .lab-input { width: 100%; max-width: 400px; padding: 15px; margin: 10px 0; border: 2px solid var(--border); border-radius: 10px; font-size: 16px; outline: none; }
+        .lab-input:focus { border-color: var(--primary); }
+        .btn-lab { background: var(--primary); color: white; padding: 15px 30px; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 16px; transition: 0.3s; margin-top: 10px; }
+        .btn-lab:hover { background: #0369a1; transform: translateY(-2px); }
+        .lab-result { margin-top: 20px; padding: 20px; background: white; border-radius: 10px; border-left: 5px solid var(--primary); font-weight: 600; display: none; text-align: left; }
+
+        .quiz-opt { display: block; width: 100%; text-align: left; padding: 18px 25px; margin-bottom: 12px; border: 2px solid var(--border); background: var(--bg-light); border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer; transition: 0.2s; }
+        .quiz-opt:hover { background: #f0f9ff; border-color: var(--primary); }
+        .quiz-opt.correct { background: #dcfce7; border-color: var(--success); color: #14532d; }
+        .quiz-opt.wrong { background: #fee2e2; border-color: var(--danger); color: #7f1d1d; }
+
+        /* Misi */
+        .quest-card { display: flex; align-items: center; padding: 20px; background: white; border: 2px solid var(--border); margin-bottom: 15px; border-radius: 15px; cursor: pointer; transition: 0.3s; }
+        .quest-card:hover { border-color: var(--primary); }
+        .quest-card.completed { background: #f0fdf4; border-color: var(--success); pointer-events: none; opacity: 0.8; }
+        .quest-checkbox { width: 25px; height: 25px; margin-right: 20px; accent-color: var(--success); cursor: pointer; }
+
+        /* AI FAB */
+        .ai-fab { position: fixed; bottom: 30px; right: 30px; width: 70px; height: 70px; background: var(--primary); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 35px; cursor: pointer; box-shadow: 0 10px 25px rgba(2,132,199,0.4); z-index: 9999; border: 3px solid white; animation: bounce 3s infinite; }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+        #chat-modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(15, 23, 42, 0.8); z-index:10000; justify-content:center; align-items:center; }
+        .chat-container { background:white; width:100%; max-width:450px; height:85vh; border-radius:20px; display:flex; flex-direction:column; overflow:hidden; }
+        .chat-header { background: var(--primary); color:white; padding:20px 25px; display:flex; justify-content:space-between; align-items: center; }
+    </style>
+</head>
+<body>
+
+    <div id="main-dashboard">
+        <header>
+            <h1>SABDA v7.0 Final</h1>
+            <p>Sistem Advokasi Berencana dengan Adib</p>
+            <div class="tag-kementrian">🏛️ Kementerian Kependudukan dan Pembangunan Keluarga RI</div>
+        </header>
+
+        <div class="container">
+            <main class="topics-grid" id="topics-grid"></main>
+
+            <aside>
+                <div class="sidebar-card">
+                    <h3 style="color:var(--text-main); margin-bottom:20px; font-size: 24px;">🎖️ Pangkat PIK-R</h3>
+                    <div style="display: flex; justify-content: space-between; align-items: flex-end;">
+                        <div>
+                            <div style="font-size:14px; color:var(--text-muted); font-weight: bold;">Status:</div>
+                            <strong id="rank-text" style="font-size:22px; color: var(--primary);">Kader Tumbuh</strong>
+                        </div>
+                        <div id="exp-text" style="font-weight:900; color:var(--accent); font-size: 18px;">0 / 100 EXP</div>
+                    </div>
+                    <div class="progress-bg"><div class="progress-fill" id="exp-fill"></div></div>
+                    <p style="font-size:14px; color:var(--text-muted); margin-top:15px;">Selesaikan Misi & Kuis di dalam Modul untuk naik pangkat hingga Duta GenRe Sejati!</p>
+                </div>
+
+                <div class="sidebar-card" style="background: #f0f9ff; border: 2px solid #bae6fd;">
+                    <h4 style="color:var(--primary); margin-bottom:15px; font-size: 18px;">🚀 Kabinet ASTRAFERA</h4>
+                    <p style="font-size:14px; color:var(--text-main); text-align:justify;">Berdaya, Berdampak, Berkolaborasi. Mendukung program <b>Everyone Connect</b> dan <b>Raya Youth Care</b> bersama Mas Adib Al Hakim.</p>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <div id="workspace">
+        <div class="ws-header">
+            <h2 id="ws-title">📚 Modul</h2>
+            <button class="btn-back" onclick="closeWorkspace()">Tutup Modul ✖</button>
+        </div>
+
+        <div class="ws-content">
+            <div class="ws-tabs">
+                <button class="tab-btn active" onclick="openTab('tab-literasi', this)">📖 Ruang Literasi Lengkap</button>
+                <button class="tab-btn" onclick="openTab('tab-alat', this)">⚙️ Lab Alat & Simulasi</button>
+                <button class="tab-btn" onclick="openTab('tab-kuis', this)">🕹️ Ujian Kuis Lab</button>
+                <button class="tab-btn" onclick="openTab('tab-misi', this)">🎯 Misi Lapangan</button>
+            </div>
+
+            <div id="tab-literasi" class="tab-panel active">
+                <h3 class="content-title">Ensiklopedia Pengetahuan</h3>
+                <div id="ws-literasi-content" class="edu-text"></div>
+            </div>
+
+            <div id="tab-alat" class="tab-panel">
+                <h3 class="content-title" id="ws-alat-title">Alat Simulasi SABDA</h3>
+                <div id="ws-alat-content"></div>
+            </div>
+
+            <div id="tab-kuis" class="tab-panel">
+                <h3 class="content-title">Ujian Evaluasi Modul</h3>
+                <p style="margin-bottom: 25px; color: var(--text-muted); font-size: 16px;">Jawab pertanyaan di bawah berdasarkan materi yang telah kamu baca. Dapatkan <b>+30 EXP</b>!</p>
+                <div id="quiz-container"></div>
+            </div>
+
+            <div id="tab-misi" class="tab-panel">
+                <h3 class="content-title">Misi Aksi Nyata</h3>
+                <p style="margin-bottom: 25px; color: var(--text-muted); font-size: 16px;">Tandai ceklis jika kamu sudah menerapkannya di dunia nyata. <b>+20 EXP</b> per misi.</p>
+                <div id="ws-misi-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ai-fab" onclick="document.getElementById('chat-modal').style.display='flex'">🤖</div>
+    <div id="chat-modal">
+        <div class="chat-container">
+            <div class="chat-header">
+                <div>
+                    <h3 style="margin:0; font-size: 22px;">AI Sakina</h3>
+                    <div style="font-size:13px; margin-top:2px;">Konselor Virtual SABDA</div>
+                </div>
+                <button style="background:none; border:none; color:white; font-size:28px; cursor:pointer;" onclick="document.getElementById('chat-modal').style.display='none'">✖</button>
+            </div>
+            <div id="chat-messages" style="flex:1; padding:20px; overflow-y:auto; background:#f8fafc; display:flex; flex-direction:column; gap:15px;">
+                <div style="background:white; border:1px solid var(--border); padding:15px; border-radius:15px; align-self:flex-start; max-width:85%; font-weight:500;">
+                    Halo! Aku Sakina. Aku sudah menghafal 12 Modul GenRe, PP TUNAS, Hukum TPKS, dan psikologi konseling. Ada yang mau didiskusikan hari ini? ✨
+                </div>
+            </div>
+            <div style="padding:20px; border-top:1px solid var(--border); display:flex; gap:10px; background: white;">
+                <input type="text" id="chat-input" style="flex:1; padding:15px; border-radius:20px; border:2px solid var(--border); outline:none; font-size: 15px;" placeholder="Tanya Sakina...">
+                <button onclick="sendAI()" style="background:var(--primary); color:white; border:none; padding:0 25px; border-radius:20px; cursor:pointer; font-weight: bold;">Kirim</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // === 1. DATABASE 12 MODUL ULTRA LENGKAP (TIDAK ADA YANG DIPOTONG) ===
+        const db = [
+            {
+                id: "stunting", icon: "🍽️", title: "Stunting & INI GENTING", subtitle: "1000 HPK & Gizi",
+                literasi: `
+                    <div class="infobox info-blue"><b>Stunting BUKAN Penyakit, Melainkan Kondisi.</b><br>Kondisi ini adalah kegagalan tumbuh kembang akibat kurang gizi kronis di masa 1000 HPK.</div>
+                    <h3>Pencegahan Hulu: INI GENTING</h3>
+                    <p>Modul <i>Implementasi Nyata GenRe Cegah Stunting</i> (INI GENTING) menegaskan bahwa stunting harus dicegah mulai dari usia remaja. Remaja putri rentan anemia akibat menstruasi dan diet berlebihan.</p>
+                    <p><b>Rumus 3G Stunting:</b> Gagal Tumbuh (Fisik kerdil), Gagal Kembang (Kognitif/Otak terhambat), Gangguan Metabolisme (Rentan penyakit kronis saat dewasa).</p>
+                    
+                    <h3>Stunting vs Gizi Buruk</h3>
+                    <ul>
+                        <li><b>Gizi Buruk:</b> Tubuh sangat kurus, BB rendah drastis, <b>risiko kematian 12x lebih tinggi</b>.</li>
+                        <li><b>Stunting:</b> Tubuh proporsional tapi <b>lebih pendek</b> dari usianya, wajah tampak lebih muda, IQ cenderung di bawah rata-rata.</li>
+                    </ul>
+
+                    <h3>Aturan Diet Sehat Remaja</h3>
+                    <ul>
+                        <li><b>Isi Piringku:</b> 30% Pokok, 30% Sayuran, 20% Lauk Pauk (wajib protein hewani), 20% Buah.</li>
+                        <li><b>GGL 4.1.5:</b> Batas maksimal harian. Gula 4 SDM, Garam 1 SDT, Lemak/Minyak 5 SDM.</li>
+                        <li><b>LILA:</b> Lingkar Lengan Atas remaja putri minimal <b>23,5 cm</b> untuk menghindari KEK (Kekurangan Energi Kronis). Wajib minum <b>TTD (Tablet Tambah Darah)</b> seminggu sekali.</li>
+                    </ul>
+                `,
+                alatTitle: "Kalkulator Gizi & LILA Remaja",
+                alatHTML: `
+                    <div class="lab-container">
+                        <p style="margin-bottom:15px; font-weight:600;">Deteksi risiko Kekurangan Energi Kronis (KEK) & Obesitas.</p>
+                        <input type="number" id="lab-lila" class="lab-input" placeholder="Ukuran LILA (cm)">
+                        <input type="number" id="lab-bb" class="lab-input" placeholder="Berat Badan (Kg)">
+                        <input type="number" id="lab-tb" class="lab-input" placeholder="Tinggi Badan (cm)">
+                        <button class="btn-lab" onclick="calcGizi()">Analisa Gizi</button>
+                        <div id="res-gizi" class="lab-result"></div>
+                    </div>
+                `,
+                quiz: [
+                    { q: "Berapa lama periode emas 1000 Hari Pertama Kehidupan (HPK)?", opts: ["A. 100 hari hamil + 900 hari lahir", "B. 270 hari kandungan + 730 hari (usia 2 tahun)", "C. 365 hari kehamilan + 635 hari lahir"], ans: 1, exp: "1000 HPK dimulai sejak pembuahan (270 hari rahim) hingga anak umur 2 tahun (730 hari)." },
+                    { q: "Batas minimal ukuran Lingkar Lengan Atas (LILA) agar perempuan tidak masuk kategori KEK adalah?", opts: ["A. 21 cm", "B. 25 cm", "C. 23,5 cm"], ans: 2, exp: "Batas LILA sehat adalah 23,5 cm." },
+                    { q: "Sesuai rumus GGL 4.1.5, berapa batas konsumsi Gula harian maksimal?", opts: ["A. 4 Sendok Makan", "B. 1 Sendok Teh", "C. 5 Sendok Makan"], ans: 0, exp: "Gula = 4 SDM, Garam = 1 SDT, Lemak = 5 SDM." }
+                ],
+                misi: ["Ukur LILA-mu hari ini", "Makan siang dengan komposisi 'Isi Piringku'", "Minum TTD (Tablet Tambah Darah) bagi remaja putri"]
+            },
+            {
+                id: "kespro", icon: "🧬", title: "Kesehatan Reproduksi", subtitle: "Sistem, Fase, & IMS",
+                literasi: `
+                    <div class="infobox info-yellow"><b>Bahaya Perilaku KNPI Remaja:</b><br>Pacaran berisiko sering dimulai dari fase <b>KNPI</b>: <b>K</b>issing, <b>N</b>ecking, <b>P</b>etting, dan <b>I</b>ntercourse. Ini adalah akar Kehamilan Tidak Diinginkan (KTD)!</div>
+                    
+                    <h3>Fakta Biologi Sistem Reproduksi</h3>
+                    <p>Sel Telur (Ovum) yang dilepaskan saat masa subur HANYA memiliki waktu hidup <b>12 hingga 24 jam</b> di Tuba Falopi untuk dibuahi sperma. Jika tidak, ia meluruh menjadi <b>Darah Menstruasi</b>.<br>
+                    <b>4 Fase Menstruasi:</b> Menstruasi ➔ Folikuler ➔ Ovulasi ➔ Luteal.</p>
+                    <p>Bagi pria, produksi sperma terjadi sepanjang hidup hingga masa <b>Andropause</b>.</p>
+
+                    <h3>Infeksi Menular Seksual (IMS) & HIV/AIDS</h3>
+                    <ul>
+                        <li><b>Sipilis (Raja Singa):</b> Disebabkan bakteri <i>Treponema Pallidum</i>.</li>
+                        <li><b>Gonorea (Kencing Nanah):</b> Bakteri <i>Neisseria Gonorrhoeae</i>.</li>
+                        <li><b>HPV:</b> Virus penyebab kutil kelamin dan Kanker Serviks.</li>
+                    </ul>
+                    <p><b>Fakta Mutlak HIV:</b> Obat yang digunakan oleh ODHIV disebut <b>ARV (Antiretroviral)</b>. ARV <b>TIDAK BISA membunuh total</b> virus HIV. ARV hanya berfungsi menekan jumlah virus (<i>viral load</i>) dan menaikkan sistem kekebalan tubuh (CD4).</p>
+                    <p>Cegah dengan <b>ABCDE</b>: Abstinence, Be Faithful, Condom, Drugs (No), Equipment.</p>
+                `,
+                alatTitle: "Flashcards: Mitos atau Fakta",
+                alatHTML: `
+                    <div class="lab-container">
+                        <h4 style="margin-bottom:15px; color:var(--primary);">Klik Kotak Untuk Membongkar Mitos!</h4>
+                        <div style="background:white; border:2px solid var(--border); padding:20px; border-radius:15px; cursor:pointer; margin-bottom:10px; font-weight:bold;" onclick="this.innerHTML='<span style=\\'color:var(--danger)\\'>FAKTA:</span> Sangat BISA! Sperma hidup hingga 5 hari di rahim. Meski 1x, risiko hamil sangat tinggi.'">MITOS: Berhubungan seks 1 kali tidak akan bikin hamil. (Klik)</div>
+                        <div style="background:white; border:2px solid var(--border); padding:20px; border-radius:15px; cursor:pointer; font-weight:bold;" onclick="this.innerHTML='<span style=\\'color:var(--secondary)\\'>FAKTA:</span> Mitos murni! Menstruasi adalah darah mati. Keramas dianjurkan untuk kebersihan.'">MITOS: Perempuan haid dilarang keramas. (Klik)</div>
+                    </div>
+                `,
+                quiz: [
+                    { q: "Apa nama obat yang digunakan untuk menekan jumlah virus HIV dalam darah (Viral Load)?", opts: ["A. Antibiotik", "B. ARV (Antiretroviral)", "C. Vaksin HPV"], ans: 1, exp: "ARV adalah pengobatan seumur hidup yang menekan laju virus HIV." },
+                    { q: "Bakteri Treponema Pallidum adalah penyebab penyakit...", opts: ["A. Sipilis (Raja Singa)", "B. Gonorea (Kencing Nanah)", "C. Kanker Serviks"], ans: 0, exp: "Sipilis disebabkan oleh bakteri Treponema Pallidum." },
+                    { q: "Berapa lama usia maksimal Sel Telur (Ovum) bertahan di tuba falopi?", opts: ["A. 3-5 Hari", "B. 12 hingga 24 Jam", "C. 1 Minggu"], ans: 1, exp: "Sel telur hanya hidup 12-24 jam setelah ovulasi." }
+                ],
+                misi: ["Ganti pakaian dalam minimal 2x sehari", "Hafalkan 4 Fase Menstruasi", "Hafalkan rumus ABCDE pencegahan HIV"]
+            },
+            {
+                id: "napza", icon: "💊", title: "NAPZA", subtitle: "7 Tahap Ketergantungan",
+                literasi: `
+                    <div class="infobox info-red"><b>Zat Adiktif: Pintu Gerbang</b><br>Rokok dan Alkohol adalah jembatan utama remaja mencoba narkoba keras.</div>
+                    
+                    <h3>Penggolongan Secara Hukum:</h3>
+                    <ul>
+                        <li><b>Narkotika Gol I:</b> Potensi kecanduan sangat tinggi, murni untuk ilmu pengetahuan (TIDAK BOLEH untuk pengobatan). Contoh: Ganja, Heroin, Kokain.</li>
+                        <li><b>Psikotropika:</b> Obat keras yang menyerang sistem saraf pusat. Contoh: Ekstasi, Sabu.</li>
+                        <li><b>Zat Adiktif (Alkohol):</b> Gol A (1-5% cth: Bir), Gol B (5-20% cth: Anggur), dan Gol C (20-55% cth: Vodka, Arak).</li>
+                    </ul>
+
+                    <h3>7 Tahap Ketergantungan (Hafalkan!):</h3>
+                    <ol>
+                        <li><b>Kompromi:</b> Tidak tegas menolak lingkungan toksik.</li>
+                        <li><b>Coba-coba:</b> Mulai mencicipi.</li>
+                        <li><b>Toleransi:</b> Tubuh kebal, pecandu butuh <b>DOSIS LEBIH BESAR</b> untuk efek yang sama. Sangat rentan Over-Dosis!</li>
+                        <li><b>Kebiasaan:</b> Mulai bolos sekolah dan antisosial.</li>
+                        <li><b>Ketergantungan:</b> Timbul gejala Putus Obat (Sakau).</li>
+                        <li><b>Intoksifitas:</b> Keracunan organ tubuh dan otak.</li>
+                        <li><b>Meninggal Dunia.</b></li>
+                    </ol>
+                `,
+                alatTitle: "Detektif Klasifikasi Barang Bukti",
+                alatHTML: `
+                    <div class="lab-container">
+                        <p style="margin-bottom:15px; font-weight:bold;">Klik tombol untuk identifikasi hukumnya.</p>
+                        <button class="btn-lab" style="background:#0f172a;" onclick="alert('GANJA: Narkotika Golongan 1. Sangat adiktif dan dilarang keras untuk obat di Indonesia.')">🌿 Cek Ganja</button>
+                        <button class="btn-lab" style="background:#0f172a;" onclick="alert('VODKA: Zat Adiktif Golongan C. Etanol 20-55%. Menghancurkan liver.')">🥃 Cek Vodka</button>
+                        <button class="btn-lab" style="background:#0f172a;" onclick="alert('EKSTASI: Psikotropika. Merusak sistem saraf pusat.')">💊 Cek Ekstasi</button>
+                    </div>
+                `,
+                quiz: [
+                    { q: "Pada tahap apa tubuh mulai kebal sehingga pecandu membutuhkan dosis obat yang lebih besar?", opts: ["A. Intoksifitas", "B. Toleransi", "C. Kebiasaan"], ans: 1, exp: "Toleransi adalah fase berbahaya memicu over-dosis." },
+                    { q: "Minuman beralkohol jenis Arak dan Vodka dengan kadar Etanol 20%-55% termasuk golongan...", opts: ["A. Golongan A", "B. Golongan B", "C. Golongan C"], ans: 2, exp: "Gol A (1-5%), Gol B (5-20%), Gol C (20-55%)." },
+                    { q: "Mengapa Narkotika Gol I dilarang untuk pengobatan medis di Indonesia?", opts: ["A. Potensi ketergantungannya SANGAT TINGGI", "B. Terlalu mahal", "C. Susah didapat"], ans: 0, exp: "Gol I (Ganja, Heroin) daya adiksi mematikan, hanya untuk riset." }
+                ],
+                misi: ["Latih berkata 'TIDAK' tegas pada ajakan merokok", "Pahami bahaya toleransi dosis", "Edukasi 1 teman tentang 7 Tahap NAPZA"]
+            },
+            {
+                id: "nikah", icon: "💍", title: "Pernikahan Anak", subtitle: "PUP & Kesiapan Keluarga",
+                literasi: `
+                    <div class="infobox info-green"><b>Pendewasaan Usia Perkawinan (PUP):</b><br>Usia matang biologis dan psikologis untuk menikah adalah <b>21 tahun (Perempuan)</b> dan <b>25 tahun (Laki-laki)</b>.</div>
+                    
+                    <h3>Dampak Fatal Nikah Dini (Di bawah 19 thn)</h3>
+                    <p>Secara medis, rahim remaja masih tumbuh dan <b>berebut gizi dengan janin</b>, memicu lahirnya <b>Bayi Stunting</b>. Secara psikologis, emosi labil menyebabkan kasus perceraian tertinggi terjadi pada pernikahan di bawah usia 5 tahun.</p>
+
+                    <h3>10 Dimensi Kesiapan Berkeluarga:</h3>
+                    <ul style="column-count:2;">
+                        <li>1. Kesiapan Usia</li>
+                        <li>2. Kesiapan Fisik</li>
+                        <li>3. Kesiapan Mental</li>
+                        <li>4. Kesiapan Finansial</li>
+                        <li>5. Kesiapan Moral</li>
+                        <li>6. Kesiapan Emosi</li>
+                        <li>7. Kesiapan Sosial</li>
+                        <li>8. Kesiapan Interpersonal</li>
+                        <li>9. Keterampilan Hidup</li>
+                        <li>10. Kesiapan Intelektual</li>
+                    </ul>
+                `,
+                alatTitle: "Simulasi Finansial 1 Bulan Pertama",
+                alatHTML: `
+                    <div class="lab-container">
+                        <p style="margin-bottom:15px; font-weight:bold;">Geser slider untuk melihat beban finansial per bulan.</p>
+                        <input type="range" id="sl-nikah" min="1500000" max="6000000" step="500000" value="3000000" oninput="document.getElementById('hsl-nikah').innerText = 'Rp ' + parseInt(this.value).toLocaleString('id-ID')">
+                        <h2 id="hsl-nikah" style="color:var(--danger); margin:15px 0; font-size:32px;">Rp 3.000.000</h2>
+                        <button class="btn-lab" onclick="alert('Itu baru hitungan kasar! Belum termasuk bensin, listrik, kesehatan, dll. Siap mental cari uang segitu tiap bulan?')">Cek Fakta</button>
+                    </div>
+                `,
+                quiz: [
+                    { q: "Berapa usia ideal minimal menikah menurut anjuran BKKBN (PUP)?", opts: ["A. Perempuan 19 th, Laki-laki 21 th", "B. Perempuan 21 th, Laki-laki 25 th", "C. Keduanya 25 th"], ans: 1, exp: "PUP menetapkan 21 tahun (P) dan 25 tahun (L)." },
+                    { q: "Dimensi yang mengatur kemampuan mendengarkan dan menghargai pasangan adalah kesiapan...", opts: ["A. Intelektual", "B. Moral", "C. Interpersonal"], ans: 2, exp: "Kesiapan Interpersonal adalah kunci komunikasi suami istri." },
+                    { q: "Kenapa kehamilan usia remaja berisiko tinggi melahirkan bayi stunting?", opts: ["A. Rahim ibu remaja masih masa pertumbuhan, nutrisi berebut dengan janin", "B. Karena orang tuanya malas masak", "C. Mitos orang zaman dulu"], ans: 0, exp: "Fakta medis: tubuh ibu dan janin saling berebut nutrisi." }
+                ],
+                misi: ["Hafalkan 10 Dimensi Kesiapan Berkeluarga", "Fokus tamatkan pendidikan setinggi mungkin", "Tunda pernikahan hingga usia ideal (21/25)"]
+            },
+            {
+                id: "seksual", icon: "🛑", title: "Kekerasan Seksual", subtitle: "PP TUNAS & Child Grooming",
+                literasi: `
+                    <div class="infobox info-red"><b>Darurat Kekerasan Anak 2025:</b><br>BKKBN mencatat <b>11.049 kasus</b> kekerasan seksual anak!</div>
+                    
+                    <h3>PP TUNAS No. 17 Tahun 2025</h3>
+                    <p>Berlaku <b>28 Maret 2026</b>. Peraturan ini mewajibkan platform digital (WA, TikTok, dll) untuk melindungi anak. <b>Dilarang keras melakukan <i>Profiling</i></b> (mengambil data algoritma anak untuk eksploitasi komersial).</p>
+
+                    <h3>Waspada Child Grooming!</h3>
+                    <p>Taktik predator manipulatif: <b>Kenalan ➔ Merasa Dekat ➔ Membuat Rahasia Bersama ➔ Mengontrol Korban.</b><br>
+                    Kamu dilindungi oleh <b>UU TPKS</b> yang menjamin kerahasiaan identitas korban.</p>
+                `,
+                alatTitle: "Portal Darurat & Ruang Aman",
+                alatHTML: `
+                    <div class="lab-container">
+                        <p style="margin-bottom:15px; font-weight:bold;">Modul ini terhubung ke portal perlindungan anak BAKTI.</p>
+                        <a href="https://adib-crazyman.github.io/BAKTI/" style="background:var(--danger); color:white; padding:15px 30px; text-decoration:none; border-radius:10px; font-weight:bold; display:inline-block;">🚨 Lapor ke BAKTI Sekarang</a>
+                    </div>
+                `,
+                quiz: [
+                    { q: "Kapan PP TUNAS No. 17 Tahun 2025 resmi berlaku penuh?", opts: ["A. 1 Januari 2025", "B. 28 Maret 2026", "C. 17 Agustus 2025"], ans: 1, exp: "Masa transisi selesai pada 28 Maret 2026." },
+                    { q: "Taktik memanipulasi emosi korban hingga membuat 'rahasia' disebut...", opts: ["A. Child Grooming", "B. Cyberbullying", "C. Gaslighting"], ans: 0, exp: "Grooming adalah pendekatan predator yang sangat mematikan." },
+                    { q: "Tindakan merekam jejak aktivitas anak di internet untuk tujuan komersial yang dilarang PP TUNAS disebut?", opts: ["A. Hacking", "B. Profiling", "C. Phishing"], ans: 1, exp: "Profiling data anak dilarang keras oleh PP TUNAS." }
+                ],
+                misi: ["Simpan nomor darurat SAPA 129", "Filter daftar *Following* di sosmed-mu", "Dukung implementasi UU TPKS & PP TUNAS"]
+            },
+            {
+                id: "fatherless", icon: "👨‍👧", title: "Fatherless & Parenting", subtitle: "Gerakan Ayah Teladan",
+                literasi: `
+                    <div class="infobox info-blue"><b>Darurat Kehadiran Ayah:</b><br>Indonesia memiliki rasio *Fatherless* (Ketiadaan sosok ayah secara fisik/psikologis) yang tinggi, memicu remaja rentan depresi dan kehilangan jati diri.</div>
+                    
+                    <h3>Program Utama BKKBN (Kemendukbangga)</h3>
+                    <p>Pengasuhan anak BUKAN HANYA tugas Ibu. BKKBN meluncurkan:</p>
+                    <ul>
+                        <li><b>GATI (Gerakan Ayah Teladan):</b> Program super prioritas kementerian baru.</li>
+                        <li><b>GAT-LINK:</b> Kelas Gerakan Ayah Teladan.</li>
+                        <li><b>KOMPAK TENAN:</b> Konsorsium Penggiat Ayah Teladan.</li>
+                        <li><b>SEBAYA:</b> Sekolah Bersama Ayah (Beririsan dengan PIK-R dan SSK).</li>
+                    </ul>
+                `,
+                alatTitle: "Afirmasi & Penyembuhan Diri",
+                alatHTML: `
+                    <div class="lab-container">
+                        <p style="margin-bottom:15px;">Dapatkan afirmasi positif untuk menyembuhkan <i>Inner Child</i>.</p>
+                        <button class="btn-lab" onclick="document.getElementById('res-afir').style.display='block'; document.getElementById('res-afir').innerText='Kamu berharga. Luka masa lalumu tidak mendefinisikan masa depanmu.'">Validasi Perasaanku</button>
+                        <div id="res-afir" class="lab-result" style="font-style:italic; font-size:18px;"></div>
+                    </div>
+                `,
+                quiz: [
+                    { q: "Apa nama program prioritas Kementerian untuk mengedukasi peran ayah?", opts: ["A. GENTING", "B. GATI (Gerakan Ayah Teladan)", "C. TAMASYA"], ans: 1, exp: "GATI adalah fokus pemerintah memutus rantai fatherless." },
+                    { q: "Dampak psikologis remaja korban 'Fatherless' adalah...", opts: ["A. Mandiri secara emosi", "B. Rentan mencari validasi pada hubungan toxic", "C. Cepat sukses"], ans: 1, exp: "Kekosongan emosi sering diisi oleh figur manipulatif." },
+                    { q: "Program edukasi ayah yang diselenggarakan bersamaan dengan PIK-R/SSK di sekolah disebut?", opts: ["A. KOMPAK TENAN", "B. SEBAYA", "C. GAT-LINK"], ans: 1, exp: "SEBAYA (Sekolah Bersama Ayah)." }
+                ],
+                misi: ["Ucapkan rasa syukur untuk dirimu hari ini", "Maafkan luka masa lalu secara perlahan", "Pahami arti penting kehadiran utuh orang tua"]
+            },
+            {
+                id: "mental", icon: "🧘‍♂️", title: "Kesehatan Mental", subtitle: "Validasi & Psikologi",
+                literasi: `
+                    <div class="infobox info-yellow"><b>It's Okay Not To Be Okay.</b><br>Kesehatan mental sama berharganya dengan fisik. Tapi ingat, jangan lakukan <i>self-diagnose</i>!</div>
+                    
+                    <h3>Memahami Prokrastinasi</h3>
+                    <p>Menunda pekerjaan secara sengaja <b>bukan sekadar malas</b>. Ini adalah mekanisme otak menghindari kecemasan/stres akan kegagalan. Solusinya: Lakukan <i>Baby Steps</i> (mulai dari 5 menit pertama).</p>
+
+                    <h3>Waspada ADHD</h3>
+                    <p>Gangguan saraf yang gejalanya terpusat pada <b>Inatensi</b> (sulit fokus), <b>Hiperaktif</b>, dan <b>Impulsif</b> secara terus-menerus sejak kecil.</p>
+                `,
+                alatTitle: "Terapi Relaksasi: Box Breathing",
+                alatHTML: `
+                    <div class="lab-container">
+                        <p style="margin-bottom:15px; font-weight:bold;">Tarik napas 4 dtk, Tahan 4 dtk, Hembuskan 4 dtk.</p>
+                        <div style="width: 80px; height: 80px; background: var(--primary); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto; color:white; font-weight:800; animation: boxBreathe 16s infinite ease-in-out;">NAFAS</div>
+                        <style>@keyframes boxBreathe { 0%, 100% {transform: scale(1);} 25%, 50% {transform: scale(1.5); border-radius:50%; background:var(--secondary);} }</style>
+                    </div>
+                `,
+                quiz: [
+                    { q: "Perilaku menunda pekerjaan penting yang sebenarnya adalah mekanisme otak menghindari kecemasan disebut?", opts: ["A. Insomnia", "B. Prokrastinasi", "C. Skizofrenia"], ans: 1, exp: "Prokrastinasi adalah respon emosional terhadap stres tugas." },
+                    { q: "Gangguan saraf dengan gejala sulit fokus (Inatensi), hiperaktif, dan impulsif disebut?", opts: ["A. ADHD", "B. Bipolar", "C. OCD"], ans: 0, exp: "Attention Deficit Hyperactivity Disorder." },
+                    { q: "Apa tindakan terbaik jika merasa tertekan berat berhari-hari?", opts: ["A. Self-diagnose dari TikTok", "B. Memendam sendiri", "C. Curhat ke konselor/profesional"], ans: 2, exp: "Jangan pernah self-diagnose!" }
+                ],
+                misi: ["Lakukan Box Breathing 3 Menit hari ini", "Tidur minimal 7 Jam", "Berhenti melakukan *Self-Diagnose* penyakit mental"]
+            },
+            {
+                id: "bully", icon: "💬", title: "Bullying", subtitle: "Efek Bystander",
+                literasi: `
+                    <div class="infobox info-red"><b>Hentikan Siklus Perundungan!</b><br>Dalam bullying, musuh terbesar korban selain pelaku adalah <b>Bystander Effect</b> (Penonton yang diam saja).</div>
+                    <p>Membela korban butuh keberanian. Diammu atau tawamu saat teman diejek adalah sinyal dukungan bagi pelaku bahwa tindakannya benar. Alihkan topik pembicaraan atau laporkan pada guru/pihak berwenang secara diam-diam.</p>
+                `,
+                alatTitle: "Simulasi Keputusan Sosial",
+                alatHTML: `
+                    <div class="lab-container">
+                        <p style="margin-bottom:15px; font-weight:bold;">Temanmu diejek fisik (body shaming) di grup WA kelas. Aksimu?</p>
+                        <button class="btn-lab" style="background:var(--danger);" onclick="alert('SALAH! Diam berarti kamu mendukung pelaku (Bystander effect).')">Diam Saja / Ikut Ketawa</button>
+                        <button class="btn-lab" style="background:var(--success);" onclick="alert('BENAR! Mengalihkan topik akan merusak momentum pelaku, lalu hubungi korban secara personal.')">Kirim Meme / Alihkan Topik</button>
+                    </div>
+                `,
+                quiz: [
+                    { q: "Sikap orang yang hanya menonton dan diam saja saat perundungan terjadi disebut?", opts: ["A. Bystander Effect", "B. Butterfly Effect", "C. Gaslighting"], ans: 0, exp: "Bystander secara tidak langsung menyuburkan bullying." },
+                    { q: "Tindakan paling aman saat melihat teman di-bully secara verbal di grup sosial media adalah...", opts: ["A. Mengalihkan pembicaraan, lalu mensupport korban", "B. Mengajak pelaku berantem fisik", "C. Keluar dari grup dan blokir semua"], ans: 0, exp: "Mengalihkan tensi dan menemani korban adalah taktik asertif." },
+                    { q: "Candaan yang merendahkan fisik atau kondisi bawaan teman disebut?", opts: ["A. Ableism / Body shaming", "B. Sarkasme", "C. Dark jokes"], ans: 0, exp: "Ableism sangat menyakiti psikologis korban." }
+                ],
+                misi: ["Berani *speak up* saat ada bullying di grup", "Berikan pujian tulus pada 1 teman", "Jangan bagikan aib orang lain di medsos"]
+            },
+            {
+                id: "lifeskill", icon: "⏱️", title: "Kecakapan Hidup", subtitle: "Sikap Asertif & Adversity",
+                literasi: `
+                    <div class="infobox info-purple"><b>Kecerdasan Adversity (AQ):</b><br>Keterampilan remaja untuk menjadi tangguh, tahan banting, dan bangkit saat menghadapi krisis.</div>
+                    
+                    <h3>Gaya Komunikasi</h3>
+                    <ul>
+                        <li><b>Pasif:</b> Mengorbankan hak diri sendiri demi orang lain ("Aku salah, kamu benar").</li>
+                        <li><b>Agresif:</b> Menyakiti orang lain demi tujuan ("Aku benar, kamu salah").</li>
+                        <li><b>ASERTIF:</b> Mengekspresikan perasaan dengan jujur <b>tanpa menyakiti orang lain</b> ("Aku baik-baik saja, kamu baik-baik saja").</li>
+                    </ul>
+                `,
+                alatTitle: "Timer Fokus: Pomodoro",
+                alatHTML: `
+                    <div class="lab-container">
+                        <p style="margin-bottom:15px; font-weight:bold;">Manajemen Waktu: Fokus 25 Menit.</p>
+                        <div style="font-size:60px; font-weight:900; color:var(--primary); margin-bottom:15px;" id="pom-time">25:00</div>
+                        <button class="btn-lab" onclick="alert('Timer simulasi berjalan. Jauhkan HP-mu sekarang!')">Mulai Fokus</button>
+                    </div>
+                `,
+                quiz: [
+                    { q: "Kemampuan remaja untuk bangkit dan tangguh dalam menghadapi hambatan hidup disebut kecerdasan...", opts: ["A. Emotional (EQ)", "B. Adversity (AQ)", "C. Spiritual (SQ)"], ans: 1, exp: "Adversity Quotient adalah ketangguhan mental." },
+                    { q: "Sikap di mana seseorang jujur menolak sesuatu secara logis tanpa menyakiti pihak lain disebut?", opts: ["A. Pasif", "B. Agresif", "C. Asertif"], ans: 2, exp: "Asertif adalah komunikasi Win-Win Solution." },
+                    { q: "Mengalah terus menerus hingga merugikan diri sendiri demi teman adalah contoh perilaku...", opts: ["A. Asertif", "B. Pasif", "C. Pahlawan"], ans: 1, exp: "Sikap pasif memicu beban mental di kemudian hari." }
+                ],
+                misi: ["Latih berkata 'TIDAK' secara Asertif hari ini", "Bantu pekerjaan domestik di rumah", "Belajar 25 Menit penuh tanpa notifikasi HP"]
+            },
+            {
+                id: "inklusif", icon: "🤝", title: "Inklusifitas & Gender", subtitle: "Seks vs Gender",
+                literasi: `
+                    <div class="infobox info-blue"><b>Seks (Biologis) vs Gender (Sosial)</b><br>
+                    <b>Seks:</b> Identitas biologis bawaan (Pria punya sperma, Wanita punya sel telur). Mutlak tidak bisa ditukar.<br>
+                    <b>Gender:</b> Konstruksi sosial tentang peran. (Cth: Mencari nafkah, memasak). Peran gender <b>BISA dipertukarkan</b>.</div>
+                    
+                    <h3>Inklusifitas Remaja GenRe</h3>
+                    <p>Rangkul semua perbedaan. Hentikan <b>Ableism</b> (candaan merendahkan kondisi fisik). Gunakan istilah yang memberdayakan seperti <i>Penyandang Disabilitas, Teman Tuli, Teman Netra</i> (bukan si Bisu atau si Cacat).</p>
+                `,
+                alatTitle: "Kuis Peka Inklusifitas",
+                alatHTML: `
+                    <div class="lab-container">
+                        <p style="margin-bottom:15px; font-weight:bold;">Manakah istilah yang beretika?</p>
+                        <button class="btn-lab" style="background:var(--danger);" onclick="alert('SALAH! Istilah ini mengandung stigma Ableism.')">Si Cacat / Si Bisu</button>
+                        <button class="btn-lab" style="background:var(--success);" onclick="alert('BENAR! Ini adalah istilah yang memberdayakan.')">Penyandang Disabilitas / Teman Tuli</button>
+                    </div>
+                `,
+                quiz: [
+                    { q: "Manakah pernyataan di bawah ini yang merupakan konsep GENDER (bukan Seks)?", opts: ["A. Laki-laki memproduksi sperma", "B. Perempuan melahirkan", "C. Mencuci piring adalah tugas perempuan"], ans: 2, exp: "Mencuci adalah peran gender yang bisa dilakukan siapapun." },
+                    { q: "Candaan yang mendiskriminasi atau merendahkan penyandang disabilitas disebut...", opts: ["A. Ableism", "B. Rasisme", "C. Seksisme"], ans: 0, exp: "Ableism menyakiti penyandang disabilitas secara mental." },
+                    { q: "Apa sebutan yang paling sopan dan inklusif untuk seseorang yang tidak bisa mendengar?", opts: ["A. Tuna Rungu / Teman Tuli", "B. Orang Bisu", "C. Penderita Cacat"], ans: 0, exp: "Teman Tuli adalah istilah inklusif yang paling diterima saat ini." }
+                ],
+                misi: ["Gunakan istilah 'Disabilitas' yang benar", "Pahami perbedaan kodrat Biologis dan peran Gender", "Bantu fasilitasi teman yang kesulitan di tempat umum"]
+            },
+            {
+                id: "emas", icon: "🇮🇩", title: "Indonesia Emas 2045", subtitle: "Bonus Demografi & SSK",
+                literasi: `
+                    <div class="infobox info-yellow"><b>100 Tahun Kemerdekaan RI:</b><br>Bonus Demografi (banyaknya usia kerja) bisa menjadi <b>Bencana Demografi</b> jika remaja masa kini bodoh, stunting, dan terjerat narkoba.</div>
+                    
+                    <h3>Langkah Strategis Pemerintah</h3>
+                    <ul>
+                        <li><b>PK-25:</b> Pemutakhiran Pendataan Keluarga 2025 (22 Juli - 21 Agustus) oleh BKKBN untuk mendata kemiskinan dan demografi.</li>
+                        <li><b>SSK (Sekolah Siaga Kependudukan):</b> Kurikulum yang mengintegrasikan materi kependudukan, KB, dan keluarga ke dalam mata pelajaran sekolah.</li>
+                    </ul>
+                `,
+                alatTitle: "Kalkulator Usia Produktif",
+                alatHTML: `
+                    <div class="lab-container">
+                        <p style="margin-bottom:15px; font-weight:bold;">Berapa usiamu di tahun 2045?</p>
+                        <input type="number" id="emas-thn" class="lab-input" placeholder="Tahun Kelahiranmu">
+                        <button class="btn-lab" onclick="calcEmas()">Cek Masa Depan</button>
+                        <div id="res-emas" class="lab-result"></div>
+                    </div>
+                `,
+                quiz: [
+                    { q: "Apa nama program pendataan keluarga serentak BKKBN pada Juli-Agustus 2025?", opts: ["A. PK-25", "B. SENSUS-25", "C. SIGA"], ans: 0, exp: "Pemutakhiran Pendataan Keluarga 2025 (PK-25)." },
+                    { q: "Program integrasi materi kependudukan ke dalam kurikulum sekolah disebut...", opts: ["A. Sekolah Ramah Anak", "B. SSK (Sekolah Siaga Kependudukan)", "C. PIK-R"], ans: 1, exp: "SSK membekali wawasan demografi bagi siswa." },
+                    { q: "Kondisi di mana jumlah penduduk usia produktif jauh lebih besar dari usia non-produktif disebut?", opts: ["A. Ledakan Penduduk", "B. Bonus Demografi", "C. Inflasi Demografi"], ans: 1, exp: "Bonus Demografi adalah peluang besar menuju 2045." }
+                ],
+                misi: ["Pelajari 1 *soft-skill* teknologi minggu ini", "Ikuti info resmi BKKBN soal PK-25", "Siapkan fisik dan mentalmu memimpin 2045"]
+            },
+            {
+                id: "kementerian", icon: "🏛️", title: "Kementerian & ASTRAFERA", subtitle: "Wawasan Birokrasi",
+                literasi: `
+                    <div class="infobox info-blue"><b>Rebranding Era 2024/2025:</b><br>BKKBN menjadi <b>Kementerian Kependudukan dan Pembangunan Keluarga RI</b> dipimpin Menteri <b>Dr. H. Wihaji</b> dan Wamen <b>Ratu Ayu Isyana Bagoes Oka</b>. Tagline: <i>"Berencana itu Keren! 2 Anak Lebih Sehat!"</i>.</div>
+                    
+                    <h3>5 Program Quick Wins (Prioritas)</h3>
+                    <ol>
+                        <li><b>TAMASYA:</b> Taman Asuh Sayang Anak (Daycare psikolog).</li>
+                        <li><b>Lansia Berdaya:</b> Homecare lansia.</li>
+                        <li><b>GATI:</b> Gerakan Ayah Teladan.</li>
+                        <li><b>AI-SuperApps SAKINA:</b> Layanan konsultasi keluarga digital.</li>
+                        <li><b>GENTING:</b> Gerakan Orang Tua Asuh Cegah Stunting.</li>
+                    </ol>
+
+                    <h3>Tahapan PIK-R & Kabinet ASTRAFERA</h3>
+                    <p>PIK-R dibagi 3 jenjang: <b>TUMBUH, TEGAK, TEGAR</b>. Materi "Tentang Kita" dibagi usia: <i>Berani (10-14), Beraksi (15-19), Berkolaborasi (20-24)</i>.</p>
+                    <p>Visi <b>Adib Al Hakim (Kabinet ASTRAFERA)</b>: Berdaya, Berdampak, Berkolaborasi melalui program <i>Everyone Connect</i> dan <i>Raya Youth Care</i>.</p>
+                `,
+                alatTitle: "Cek Fakta Birokrasi",
+                alatHTML: `
+                    <div class="lab-container">
+                        <p style="margin-bottom:15px; font-weight:bold;">Perbedaan Mendasar Triad KRR vs Salam GenRe?</p>
+                        <button class="btn-lab" style="background:var(--success);" onclick="alert('TEPAT! Triad KRR (Seksualitas, HIV, NAPZA) adalah masalahnya, sedangkan Salam GenRe adalah gerakan pencegahannya.')">Klik Lihat Jawaban</button>
+                    </div>
+                `,
+                quiz: [
+                    { q: "Siapa Menteri Kependudukan dan Pembangunan Keluarga saat ini?", opts: ["A. Dr. (H.C.) dr. Hasto Wardoyo", "B. Dr. H. Wihaji, S.Ag., M.Pd.", "C. Nadiem Makarim"], ans: 1, exp: "Dr. H. Wihaji menjabat pasca perubahan status BKKBN." },
+                    { q: "Apa nama aplikasi AI konsultasi milik kementerian yang mirip seperti SABDA?", opts: ["A. SAKINA", "B. SIGA", "C. ELZIMIL"], ans: 0, exp: "Super Apps SAKINA." },
+                    { q: "Urutan tahapan organisasi PIK Remaja yang benar adalah...", opts: ["A. Tumbuh, Tegak, Tegar", "B. Tumbuh, Tegar, Tegak", "C. Pemula, Menengah, Mahir"], ans: 0, exp: "Tumbuh (Awal) ➔ Tegak ➔ Tegar (Mandiri)." }
+                ],
+                misi: ["Hafalkan 5 Quick Wins Menteri Wihaji", "Hafalkan visi misi Kabinet ASTRAFERA", "Praktikkan Salam GenRe 3 Jari dengan benar"]
+            }
+        ]; // Total 12 Modul (TIDAK ADA YANG DIPOTONG)
+
+        // --- 2. CORE LOGIC UI & STATE ---
+        let currentExp = 0;
+        let currentLevel = 1;
+        const Ranks = ["Kader Tumbuh", "Kader Tegak", "Kader Tegar", "Konselor Sebaya", "Duta GenRe 2026"];
+
+        function initDashboard() {
+            const grid = document.getElementById('topics-grid');
+            db.forEach(t => {
+                grid.innerHTML += `
+                    <div class="topic-card" onclick="openWorkspace('${t.id}')">
+                        <span class="t-icon">${t.icon}</span>
+                        <div class="t-title">${t.title}</div>
+                        <div class="t-subtitle">${t.subtitle}</div>
+                    </div>`;
+            });
+        }
+
+        let activeQuizState = {};
+
+        function openWorkspace(id) {
+            const data = db.find(t => t.id === id);
+            document.getElementById('ws-title').innerHTML = `${data.icon} ${data.title}`;
+            document.getElementById('ws-literasi-content').innerHTML = data.literasi;
+            document.getElementById('ws-alat-title').innerText = data.alatTitle;
+            document.getElementById('ws-alat-content').innerHTML = data.alatHTML;
+            
+            // Build Misi (Quests)
+            let misiList = document.getElementById('ws-misi-list');
+            misiList.innerHTML = "";
+            data.misi.forEach(m => {
+                misiList.innerHTML += `
+                    <div class="quest-card" onclick="completeQuest(this)">
+                        <input type="checkbox" class="quest-checkbox" onclick="event.stopPropagation(); completeQuest(this.parentNode)">
+                        <span style="font-weight:700; flex:1;">${m}</span>
+                    </div>`;
+            });
+
+            // Build Quiz
+            activeQuizState = { topicId: id, currentQ: 0, score: 0, questions: data.quiz };
+            renderQuiz();
+
+            document.getElementById('workspace').style.display = 'block'; // Tampilkan full
+            document.querySelectorAll('.tab-btn')[0].click();
+            window.scrollTo(0,0);
+        }
+
+        function closeWorkspace() { document.getElementById('workspace').style.display = 'none'; }
+
+        function openTab(id, btn) {
+            document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            btn.classList.add('active');
+        }
+
+        function completeQuest(element) {
+            if(element.classList.contains('completed')) return;
+            element.classList.add('completed');
+            element.querySelector('input').checked = true;
+            addExp(20);
+        }
+
+        function addExp(amount) {
+            currentExp += amount;
+            if(currentExp >= 100) {
+                currentExp = currentExp - 100;
+                currentLevel++;
+                alert(`🎉 LUAR BIASA! Kamu naik pangkat menjadi: ${Ranks[Math.min(currentLevel-1, 4)]}! Wawasanmu semakin tajam.`);
+            }
+            document.getElementById('exp-fill').style.width = `${currentExp}%`;
+            document.getElementById('exp-text').innerText = `${currentExp} / 100 EXP`;
+            document.getElementById('rank-text').innerText = Ranks[Math.min(currentLevel-1, 4)];
+        }
+
+        // --- 3. QUIZ ENGINE ---
+        function renderQuiz() {
+            const container = document.getElementById('quiz-container');
+            const state = activeQuizState;
+            
+            if(state.currentQ >= state.questions.length) {
+                container.innerHTML = `
+                    <div style="text-align:center; padding:40px; background:#f0fdf4; border:2px dashed var(--secondary); border-radius:20px;">
+                        <h2 style="color:var(--secondary); margin-bottom:10px;">Skor Akhir: ${state.score} / ${state.questions.length}</h2>
+                        <p style="font-weight:600; margin-bottom:20px;">Pemahamanmu tentang modul ini sangat solid!</p>
+                        <button class="btn-lab" onclick="addExp(30); this.disabled=true; this.innerHTML='Bonus +30 EXP Diterima ✅';">Klaim Bonus EXP</button>
+                    </div>`;
+                return;
+            }
+
+            const qData = state.questions[state.currentQ];
+            let optsHTML = "";
+            qData.opts.forEach((opt, index) => {
+                optsHTML += `<button class="quiz-opt" id="opt-${index}" onclick="checkAnswer(${index}, ${qData.ans}, '${qData.exp.replace(/'/g, "\\'")}')">${opt}</button>`;
+            });
+
+            container.innerHTML = `
+                <div style="background:white; border:1px solid var(--border); padding:35px; border-radius:20px; box-shadow:0 10px 20px rgba(0,0,0,0.03);">
+                    <div style="font-size:13px; color:var(--primary); font-weight:800; letter-spacing:2px; margin-bottom:15px;">PERTANYAAN ${state.currentQ + 1} DARI ${state.questions.length}</div>
+                    <div style="font-size:20px; font-weight:800; margin-bottom:25px; line-height:1.5;">${qData.q}</div>
+                    ${optsHTML}
+                    <div id="quiz-feedback" style="margin-top:20px; padding:20px; border-radius:15px; font-weight:600; display:none;"></div>
+                    <button id="next-q-btn" class="btn-lab" style="display:none; width:100%; margin-top:20px;" onclick="nextQuestion()">Pertanyaan Selanjutnya ➔</button>
+                </div>
+            `;
+        }
+
+        function checkAnswer(selectedIndex, correctIndex, explanation) {
+            const opts = document.querySelectorAll('.quiz-opt');
+            opts.forEach(opt => { opt.disabled = true; opt.style.pointerEvents = 'none'; });
+            
+            const feedback = document.getElementById('quiz-feedback');
+            feedback.style.display = 'block';
+
+            if(selectedIndex === correctIndex) {
+                document.getElementById(`opt-${selectedIndex}`).classList.add('correct');
+                feedback.style.background = '#dcfce7'; feedback.style.color = '#15803d';
+                feedback.innerHTML = `<b>✅ BENAR!</b><br>${explanation}`;
+                activeQuizState.score++;
+            } else {
+                document.getElementById(`opt-${selectedIndex}`).classList.add('wrong');
+                document.getElementById(`opt-${correctIndex}`).classList.add('correct');
+                feedback.style.background = '#fef2f2'; feedback.style.color = '#e11d48';
+                feedback.innerHTML = `<b>❌ KURANG TEPAT!</b><br>${explanation}`;
+            }
+            document.getElementById('next-q-btn').style.display = 'block';
+        }
+
+        function nextQuestion() { activeQuizState.currentQ++; renderQuiz(); }
+
+        // --- 4. MINI TOOLS LOGIC ---
+        function calcGizi() {
+            const lila = parseFloat(document.getElementById('lab-lila').value);
+            const res = document.getElementById('res-gizi');
+            if(lila) {
+                res.style.display = "block";
+                res.innerHTML = `<div style="padding:20px; border-left:5px solid ${lila < 23.5 ? 'var(--danger)' : 'var(--success)'}; background:white; border-radius:10px; font-weight:600;">
+                                 LILA: ${lila} cm. ${lila < 23.5 ? '<span style="color:var(--danger)">⚠️ Risiko KEK! Wajib asupan protein hewani.</span>' : '<span style="color:var(--success)">✅ Normal! Rahim sehat untuk masa depan.</span>'}</div>`;
+            }
+        }
+
+        function calcEmas() {
+            const thn = parseInt(document.getElementById('emas-thn').value);
+            if(thn) {
+                document.getElementById('res-emas').style.display = 'block';
+                document.getElementById('res-emas').innerHTML = `Di 2045, kamu berusia <b>${2045 - thn} Tahun</b>. Waktunya memimpin!`;
+            }
+        }
+
+        // --- 5. AI SAKINA SYSTEM ---
+        const API_KEY = "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";
+        const sysPrompt = `Kamu adalah Sakina, AI SABDA buatan Mas Adib Al Hakim (Mahasiswa Ilmu Hukum Unila 2025, Duta GenRe). Kamu menguasai semua PDF GenRe (PP TUNAS 17/2025, GGL 4.1.5, LILA 23.5cm, 10 Dimensi Nikah, 7 Tahap NAPZA, ARV HIV, Bystander Effect, Kabinet ASTRAFERA). Jawab pertanyaan remaja dengan empati Bimbingan Konseling dan logika Hukum. Pakai bahasa gaul (kamu, aku).`;
+        
+        async function sendAI() {
+            const input = document.getElementById('chat-input');
+            const txt = input.value.trim();
+            if(!txt) return;
+            
+            const msgBox = document.getElementById('chat-messages');
+            msgBox.innerHTML += `<div style="background:var(--primary); color:white; padding:15px; border-radius:15px; align-self:flex-end; max-width:85%; font-weight:500;">${txt}</div>`;
+            input.value = "";
+            msgBox.scrollTop = msgBox.scrollHeight;
+
+            const typingId = `typ-${Date.now()}`;
+            msgBox.innerHTML += `<div id="${typingId}" style="background:white; border:1px solid var(--border); padding:15px; border-radius:15px; align-self:flex-start; font-style:italic; color:var(--text-muted);">Sakina mengetik...</div>`;
+            msgBox.scrollTop = msgBox.scrollHeight;
+
+            try {
+                const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${API_KEY}` },
+                    body: JSON.stringify({ model: 'llama-3.1-8b-instant', messages: [{role:'system', content: sysPrompt}, {role:'user', content: txt}] })
+                });
+                const data = await res.json();
+                document.getElementById(typingId).remove();
+                if(data.choices) msgBox.innerHTML += `<div style="background:white; border:1px solid var(--border); padding:15px; border-radius:15px; align-self:flex-start; max-width:90%; font-weight:500; line-height:1.6;">${data.choices[0].message.content}</div>`;
+            } catch(e) { document.getElementById(typingId).innerHTML = "Koneksi terputus."; }
+            msgBox.scrollTop = msgBox.scrollHeight;
+        }
+
+        window.onload = initDashboard;
+    </script>
+</body>
+</html>
