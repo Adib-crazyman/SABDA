@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SABDA v7.0 | Strategi Advokasi Berencana dengan Adib</title>
+    <title>BAKTERA v8.0 | BARISAN dan KONSELING TERENCANA</title>
     <style>
         /* === TEMA UI PROFESIONAL & CLEAN === */
         :root {
@@ -47,7 +47,7 @@
         .progress-bg { width: 100%; height: 18px; background: #e2e8f0; border-radius: 10px; overflow: hidden; margin: 15px 0; }
         .progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--secondary), var(--primary)); width: 0%; transition: width 0.8s ease; }
 
-        /* === IMMERSIVE WORKSPACE (TAMPILAN MODUL RAPI) === */
+        /* === IMMERSIVE WORKSPACE === */
         #workspace { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: #f8fafc; z-index: 2000; overflow-x: hidden; overflow-y: auto; }
         .ws-header { background: white; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 15px rgba(0,0,0,0.05); }
         .ws-header h2 { font-size: 26px; color: var(--primary); font-weight: 900; }
@@ -78,6 +78,8 @@
         .infobox { padding: 25px; border-radius: 15px; margin: 25px 0; border-left: 6px solid; font-weight: 500; font-size: 16px; line-height: 1.7; background: #f0f9ff; border-color: var(--primary); }
         .info-red { background: #fef2f2; border-color: var(--danger); }
         .info-green { background: #f0fdf4; border-color: var(--secondary); }
+        .info-purple { background: #faf5ff; border-color: #9333ea; }
+        .info-yellow { background: #fefce8; border-color: var(--accent); }
 
         /* Lab & Kuis Rapi */
         .lab-container { background: #f8fafc; padding: 35px; border-radius: 15px; border: 2px dashed var(--border); text-align: center; margin-bottom: 20px; }
@@ -111,8 +113,8 @@
 
     <div id="main-dashboard">
         <header>
-            <h1>SABDA v7.0 Final</h1>
-            <p>Sistem Advokasi Berencana dengan Adib</p>
+            <h1>BAKTERA v8.0 Final</h1>
+            <p>BARISAN dan KONSELING TERENCANA</p>
             <div class="tag-kementrian">🏛️ Kementerian Kependudukan dan Pembangunan Keluarga RI</div>
         </header>
 
@@ -144,7 +146,7 @@
     <div id="workspace">
         <div class="ws-header">
             <h2 id="ws-title">📚 Modul</h2>
-            <button class="btn-back" onclick="closeWorkspace()">Tutup Modul ✖</button>
+            <button class="btn-back" onclick="closeWorkspace()">Tutup Modul ✖️</button>
         </div>
 
         <div class="ws-content">
@@ -161,7 +163,7 @@
             </div>
 
             <div id="tab-alat" class="tab-panel">
-                <h3 class="content-title" id="ws-alat-title">Alat Simulasi SABDA</h3>
+                <h3 class="content-title" id="ws-alat-title">Alat Simulasi BAKTERA</h3>
                 <div id="ws-alat-content"></div>
             </div>
 
@@ -185,13 +187,13 @@
             <div class="chat-header">
                 <div>
                     <h3 style="margin:0; font-size: 22px;">AI Sakina</h3>
-                    <div style="font-size:13px; margin-top:2px;">Konselor Virtual SABDA</div>
+                    <div style="font-size:13px; margin-top:2px;">Konselor Virtual BAKTERA</div>
                 </div>
-                <button style="background:none; border:none; color:white; font-size:28px; cursor:pointer;" onclick="document.getElementById('chat-modal').style.display='none'">✖</button>
+                <button style="background:none; border:none; color:white; font-size:28px; cursor:pointer;" onclick="document.getElementById('chat-modal').style.display='none'">✖️</button>
             </div>
             <div id="chat-messages" style="flex:1; padding:20px; overflow-y:auto; background:#f8fafc; display:flex; flex-direction:column; gap:15px;">
                 <div style="background:white; border:1px solid var(--border); padding:15px; border-radius:15px; align-self:flex-start; max-width:85%; font-weight:500;">
-                    Halo! Aku Sakina. Aku sudah menghafal 12 Modul GenRe, PP TUNAS, Hukum TPKS, dan psikologi konseling. Ada yang mau didiskusikan hari ini? ✨
+                    Halo! Aku Sakina. Aku sudah menghafal Modul GenRe, PP TUNAS, Hukum TPKS, dan psikologi konseling terbaru. Ada yang mau didiskusikan hari ini bersama BAKTERA? ✨
                 </div>
             </div>
             <div style="padding:20px; border-top:1px solid var(--border); display:flex; gap:10px; background: white;">
@@ -202,27 +204,29 @@
     </div>
 
     <script>
-        // === 1. DATABASE 12 MODUL ULTRA LENGKAP (TIDAK ADA YANG DIPOTONG) ===
+        // === 1. DATABASE 13 MODUL ULTRA LENGKAP ===
         const db = [
             {
                 id: "stunting", icon: "🍽️", title: "Stunting & INI GENTING", subtitle: "1000 HPK & Gizi",
                 literasi: `
                     <div class="infobox info-blue"><b>Stunting BUKAN Penyakit, Melainkan Kondisi.</b><br>Kondisi ini adalah kegagalan tumbuh kembang akibat kurang gizi kronis di masa 1000 HPK.</div>
+                    
                     <h3>Pencegahan Hulu: INI GENTING</h3>
-                    <p>Modul <i>Implementasi Nyata GenRe Cegah Stunting</i> (INI GENTING) menegaskan bahwa stunting harus dicegah mulai dari usia remaja. Remaja putri rentan anemia akibat menstruasi dan diet berlebihan.</p>
-                    <p><b>Rumus 3G Stunting:</b> Gagal Tumbuh (Fisik kerdil), Gagal Kembang (Kognitif/Otak terhambat), Gangguan Metabolisme (Rentan penyakit kronis saat dewasa).</p>
+                    <p>Modul <i>Implementasi Nyata GenRe Cegah Stunting</i> (INI GENTING) menegaskan bahwa stunting harus dicegah mulai dari usia remaja. Remaja putri rentan anemia akibat menstruasi dan diet berlebihan. Mempersiapkan rahim dan fisik sejak masa remaja adalah kunci memutus rantai stunting antar-generasi.</p>
+                    <p><b>Rumus 3G Stunting:</b> Gagal Tumbuh (Fisik kerdil/tinggi di bawah standar), Gagal Kembang (Kognitif/Otak terhambat & lambat belajar), Gangguan Metabolisme (Rentan penyakit kronis seperti diabetes & jantung saat dewasa).</p>
                     
                     <h3>Stunting vs Gizi Buruk</h3>
                     <ul>
-                        <li><b>Gizi Buruk:</b> Tubuh sangat kurus, BB rendah drastis, <b>risiko kematian 12x lebih tinggi</b>.</li>
-                        <li><b>Stunting:</b> Tubuh proporsional tapi <b>lebih pendek</b> dari usianya, wajah tampak lebih muda, IQ cenderung di bawah rata-rata.</li>
+                        <li><b>Gizi Buruk:</b> Tubuh sangat kurus (wasting), BB rendah drastis, <b>risiko kematian 12x lebih tinggi</b>, butuh penanganan ICU medis segera.</li>
+                        <li><b>Stunting:</b> Tubuh terlihat proporsional tapi <b>lebih pendek</b> dari anak seusianya, wajah tampak lebih muda dari usianya, IQ cenderung di bawah rata-rata. Biasanya baru terlihat jelas setelah usia 2 tahun.</li>
                     </ul>
 
-                    <h3>Aturan Diet Sehat Remaja</h3>
+                    <h3>Aturan Diet Sehat & Sanitasi</h3>
                     <ul>
-                        <li><b>Isi Piringku:</b> 30% Pokok, 30% Sayuran, 20% Lauk Pauk (wajib protein hewani), 20% Buah.</li>
-                        <li><b>GGL 4.1.5:</b> Batas maksimal harian. Gula 4 SDM, Garam 1 SDT, Lemak/Minyak 5 SDM.</li>
-                        <li><b>LILA:</b> Lingkar Lengan Atas remaja putri minimal <b>23,5 cm</b> untuk menghindari KEK (Kekurangan Energi Kronis). Wajib minum <b>TTD (Tablet Tambah Darah)</b> seminggu sekali.</li>
+                        <li><b>Isi Piringku:</b> 30% Makanan Pokok (Karbohidrat), 30% Sayuran, 20% Lauk Pauk (Wajib protein hewani seperti telur/ikan), 20% Buah-buahan.</li>
+                        <li><b>GGL 4.1.5:</b> Batas maksimal harian. Gula 4 SDM, Garam 1 SDT, Lemak/Minyak 5 SDM. Menjaga remaja dari risiko obesitas dini.</li>
+                        <li><b>LILA (Lingkar Lengan Atas):</b> Remaja putri minimal harus mencapai <b>23,5 cm</b> untuk menghindari KEK (Kekurangan Energi Kronis).</li>
+                        <li><b>TTD & Sanitasi:</b> Wajib minum <b>Tablet Tambah Darah (TTD)</b> seminggu sekali. Selain nutrisi, <b>sanitasi air bersih dan jamban sehat</b> sangat krusial karena infeksi cacingan kronis dapat menyedot nutrisi anak balita, memicu stunting tak langsung.</li>
                     </ul>
                 `,
                 alatTitle: "Kalkulator Gizi & LILA Remaja",
@@ -239,335 +243,387 @@
                 quiz: [
                     { q: "Berapa lama periode emas 1000 Hari Pertama Kehidupan (HPK)?", opts: ["A. 100 hari hamil + 900 hari lahir", "B. 270 hari kandungan + 730 hari (usia 2 tahun)", "C. 365 hari kehamilan + 635 hari lahir"], ans: 1, exp: "1000 HPK dimulai sejak pembuahan (270 hari rahim) hingga anak umur 2 tahun (730 hari)." },
                     { q: "Batas minimal ukuran Lingkar Lengan Atas (LILA) agar perempuan tidak masuk kategori KEK adalah?", opts: ["A. 21 cm", "B. 25 cm", "C. 23,5 cm"], ans: 2, exp: "Batas LILA sehat adalah 23,5 cm." },
-                    { q: "Sesuai rumus GGL 4.1.5, berapa batas konsumsi Gula harian maksimal?", opts: ["A. 4 Sendok Makan", "B. 1 Sendok Teh", "C. 5 Sendok Makan"], ans: 0, exp: "Gula = 4 SDM, Garam = 1 SDT, Lemak = 5 SDM." }
+                    { q: "Selain gizi, faktor lingkungan apa yang paling memicu stunting akibat infeksi berulang?", opts: ["A. Polusi udara", "B. Sanitasi yang buruk dan kurangnya air bersih", "C. Cuaca panas"], ans: 1, exp: "Sanitasi buruk menyebabkan diare kronis dan cacingan yang menguras nutrisi anak." }
                 ],
                 misi: ["Ukur LILA-mu hari ini", "Makan siang dengan komposisi 'Isi Piringku'", "Minum TTD (Tablet Tambah Darah) bagi remaja putri"]
             },
             {
                 id: "kespro", icon: "🧬", title: "Kesehatan Reproduksi", subtitle: "Sistem, Fase, & IMS",
                 literasi: `
-                    <div class="infobox info-yellow"><b>Bahaya Perilaku KNPI Remaja:</b><br>Pacaran berisiko sering dimulai dari fase <b>KNPI</b>: <b>K</b>issing, <b>N</b>ecking, <b>P</b>etting, dan <b>I</b>ntercourse. Ini adalah akar Kehamilan Tidak Diinginkan (KTD)!</div>
+                    <div class="infobox info-yellow"><b>Bahaya Perilaku KNPI Remaja:</b><br>Pacaran berisiko sering dimulai dari fase <b>KNPI</b>: <b>K</b>issing, <b>N</b>ecking, <b>P</b>etting, dan <b>I</b>ntercourse. Ini adalah akar utama penularan IMS dan Kehamilan Tidak Diinginkan (KTD)!</div>
                     
-                    <h3>Fakta Biologi Sistem Reproduksi</h3>
-                    <p>Sel Telur (Ovum) yang dilepaskan saat masa subur HANYA memiliki waktu hidup <b>12 hingga 24 jam</b> di Tuba Falopi untuk dibuahi sperma. Jika tidak, ia meluruh menjadi <b>Darah Menstruasi</b>.<br>
+                    <h3>Fakta Biologi Sistem Reproduksi & Kebersihan</h3>
+                    <p>Sel Telur (Ovum) yang dilepaskan saat masa subur HANYA memiliki waktu hidup <b>12 hingga 24 jam</b> di Tuba Falopi untuk dibuahi sperma. Jika tidak dibuahi, ia akan meluruh menjadi <b>Darah Menstruasi</b>.<br>
                     <b>4 Fase Menstruasi:</b> Menstruasi ➔ Folikuler ➔ Ovulasi ➔ Luteal.</p>
-                    <p>Bagi pria, produksi sperma terjadi sepanjang hidup hingga masa <b>Andropause</b>.</p>
+                    <p>Bagi pria, produksi sperma terjadi sepanjang hidup (sejak pubertas) hingga masa <b>Andropause</b> (penurunan testosteron di usia senja).</p>
+                    <p><b>Menjaga Kebersihan (Personal Hygiene):</b> Sangat disarankan mengganti pembalut maksimal setiap 4 jam sekali saat sedang haid. Area kewanitaan memiliki tingkat keasaman (pH) alami yang bisa rusak jika dibasuh dengan sabun wangi buatan berlebihan, memicu jamur Candida.</p>
 
                     <h3>Infeksi Menular Seksual (IMS) & HIV/AIDS</h3>
                     <ul>
-                        <li><b>Sipilis (Raja Singa):</b> Disebabkan bakteri <i>Treponema Pallidum</i>.</li>
-                        <li><b>Gonorea (Kencing Nanah):</b> Bakteri <i>Neisseria Gonorrhoeae</i>.</li>
-                        <li><b>HPV:</b> Virus penyebab kutil kelamin dan Kanker Serviks.</li>
+                        <li><b>Sipilis (Raja Singa):</b> Disebabkan bakteri <i>Treponema Pallidum</i>. Menimbulkan luka pada alat kelamin tanpa rasa sakit di fase awal.</li>
+                        <li><b>Gonorea (Kencing Nanah):</b> Bakteri <i>Neisseria Gonorrhoeae</i>. Menimbulkan rasa terbakar saat buang air kecil.</li>
+                        <li><b>HPV (Human Papillomavirus):</b> Virus penyebab kutil kelamin dan Kanker Serviks. (Dapat dicegah sejak dini dengan Vaksin HPV).</li>
                     </ul>
-                    <p><b>Fakta Mutlak HIV:</b> Obat yang digunakan oleh ODHIV disebut <b>ARV (Antiretroviral)</b>. ARV <b>TIDAK BISA membunuh total</b> virus HIV. ARV hanya berfungsi menekan jumlah virus (<i>viral load</i>) dan menaikkan sistem kekebalan tubuh (CD4).</p>
-                    <p>Cegah dengan <b>ABCDE</b>: Abstinence, Be Faithful, Condom, Drugs (No), Equipment.</p>
+                    <p><b>Fakta Mutlak HIV:</b> HIV menyerang sel darah putih (CD4). Obat yang digunakan oleh ODHIV disebut <b>ARV (Antiretroviral)</b>. ARV <b>TIDAK BISA membunuh total</b> virus HIV. ARV berfungsi untuk 'menidurkan' dan menekan jumlah virus (<i>viral load</i>) dalam darah hingga ke titik tidak terdeteksi (Undetectable = Untransmittable), sekaligus menaikkan kekebalan tubuh.</p>
+                    <p>Cegah IMS dengan prinsip <b>ABCDE</b>: <b>A</b>bstinence (Puasa seks), <b>B</b>e Faithful (Setia), <b>C</b>ondom (Bila berisiko), <b>D</b>rugs (No Narkoba suntik), <b>E</b>quipment (Gunakan jarum steril).</p>
                 `,
                 alatTitle: "Flashcards: Mitos atau Fakta",
                 alatHTML: `
                     <div class="lab-container">
                         <h4 style="margin-bottom:15px; color:var(--primary);">Klik Kotak Untuk Membongkar Mitos!</h4>
-                        <div style="background:white; border:2px solid var(--border); padding:20px; border-radius:15px; cursor:pointer; margin-bottom:10px; font-weight:bold;" onclick="this.innerHTML='<span style=\\'color:var(--danger)\\'>FAKTA:</span> Sangat BISA! Sperma hidup hingga 5 hari di rahim. Meski 1x, risiko hamil sangat tinggi.'">MITOS: Berhubungan seks 1 kali tidak akan bikin hamil. (Klik)</div>
-                        <div style="background:white; border:2px solid var(--border); padding:20px; border-radius:15px; cursor:pointer; font-weight:bold;" onclick="this.innerHTML='<span style=\\'color:var(--secondary)\\'>FAKTA:</span> Mitos murni! Menstruasi adalah darah mati. Keramas dianjurkan untuk kebersihan.'">MITOS: Perempuan haid dilarang keramas. (Klik)</div>
+                        <div style="background:white; border:2px solid var(--border); padding:20px; border-radius:15px; cursor:pointer; margin-bottom:10px; font-weight:bold;" onclick="this.innerHTML='<span style=\\'color:var(--danger)\\'>FAKTA:</span> Sangat BISA! Sperma dapat hidup hingga 5 hari di rahim wanita. Meski hanya dilakukan 1x, risiko KTD sangat tinggi.'">MITOS: Berhubungan seks 1 kali tidak akan bikin hamil. (Klik)</div>
+                        <div style="background:white; border:2px solid var(--border); padding:20px; border-radius:15px; cursor:pointer; font-weight:bold;" onclick="this.innerHTML='<span style=\\'color:var(--secondary)\\'>FAKTA:</span> Mitos murni! Menstruasi adalah darah jaringan rahim yang mati. Keramas sangat dianjurkan untuk menjaga kebersihan.'">MITOS: Perempuan haid dilarang keramas. (Klik)</div>
                     </div>
                 `,
                 quiz: [
-                    { q: "Apa nama obat yang digunakan untuk menekan jumlah virus HIV dalam darah (Viral Load)?", opts: ["A. Antibiotik", "B. ARV (Antiretroviral)", "C. Vaksin HPV"], ans: 1, exp: "ARV adalah pengobatan seumur hidup yang menekan laju virus HIV." },
-                    { q: "Bakteri Treponema Pallidum adalah penyebab penyakit...", opts: ["A. Sipilis (Raja Singa)", "B. Gonorea (Kencing Nanah)", "C. Kanker Serviks"], ans: 0, exp: "Sipilis disebabkan oleh bakteri Treponema Pallidum." },
-                    { q: "Berapa lama usia maksimal Sel Telur (Ovum) bertahan di tuba falopi?", opts: ["A. 3-5 Hari", "B. 12 hingga 24 Jam", "C. 1 Minggu"], ans: 1, exp: "Sel telur hanya hidup 12-24 jam setelah ovulasi." }
+                    { q: "Apa nama obat yang digunakan untuk menekan jumlah virus HIV dalam darah (Viral Load)?", opts: ["A. Antibiotik", "B. ARV (Antiretroviral)", "C. Vaksin HPV"], ans: 1, exp: "ARV adalah pengobatan seumur hidup yang menekan laju replikasi virus HIV." },
+                    { q: "Berapa jam maksimal penggantian pembalut yang disarankan saat menstruasi agar terhindar dari infeksi jamur?", opts: ["A. 8 Jam", "B. 4 Jam", "C. 12 Jam"], ans: 1, exp: "Darah haid adalah media terbaik tumbuhnya bakteri, gantilah tiap 4 jam sekali." },
+                    { q: "Berapa lama usia maksimal Sel Telur (Ovum) bertahan di tuba falopi?", opts: ["A. 3-5 Hari", "B. 12 hingga 24 Jam", "C. 1 Minggu"], ans: 1, exp: "Sel telur hanya hidup 12-24 jam setelah proses ovulasi terjadi." }
                 ],
                 misi: ["Ganti pakaian dalam minimal 2x sehari", "Hafalkan 4 Fase Menstruasi", "Hafalkan rumus ABCDE pencegahan HIV"]
             },
             {
-                id: "napza", icon: "💊", title: "NAPZA", subtitle: "7 Tahap Ketergantungan",
+                id: "napza", icon: "💊", title: "NAPZA", subtitle: "7 Tahap & Hukum",
                 literasi: `
-                    <div class="infobox info-red"><b>Zat Adiktif: Pintu Gerbang</b><br>Rokok dan Alkohol adalah jembatan utama remaja mencoba narkoba keras.</div>
+                    <div class="infobox info-red"><b>Zat Adiktif: Pintu Gerbang</b><br>Rokok (nikotin) dan Alkohol adalah 'Gateway Drug' atau jembatan utama yang membuat remaja penasaran untuk mencoba narkoba keras.</div>
                     
-                    <h3>Penggolongan Secara Hukum:</h3>
+                    <h3>Penggolongan Secara Hukum & Kesehatan:</h3>
                     <ul>
-                        <li><b>Narkotika Gol I:</b> Potensi kecanduan sangat tinggi, murni untuk ilmu pengetahuan (TIDAK BOLEH untuk pengobatan). Contoh: Ganja, Heroin, Kokain.</li>
-                        <li><b>Psikotropika:</b> Obat keras yang menyerang sistem saraf pusat. Contoh: Ekstasi, Sabu.</li>
-                        <li><b>Zat Adiktif (Alkohol):</b> Gol A (1-5% cth: Bir), Gol B (5-20% cth: Anggur), dan Gol C (20-55% cth: Vodka, Arak).</li>
+                        <li><b>Narkotika Gol I:</b> Potensi kecanduannya sangat tinggi, hukum Indonesia menyatakan <b>HANYA murni untuk ilmu pengetahuan</b> (TIDAK BOLEH untuk pengobatan/terapi medis). Contoh: Ganja, Heroin (Putaw), Kokain.</li>
+                        <li><b>Psikotropika:</b> Obat keras (biasanya buatan lab) yang langsung menyerang sistem saraf pusat dan mengubah perilaku. Contoh: Ekstasi, Inex, Sabu-sabu.</li>
+                        <li><b>Zat Adiktif (Alkohol):</b> Diatur ketat konsentrasinya. Gol A (1-5% cth: Bir), Gol B (5-20% cth: Anggur/Wine), dan Gol C (20-55% cth: Vodka, Arak, Wiski).</li>
                     </ul>
+                    <p><b>Hukum & Rehabilitasi:</b> UU Narkotika di Indonesia mengedepankan hukuman pidana berat bagi 'Pengedar/Bandar', namun menyediakan opsi <b>Rehabilitasi (Medis & Sosial)</b> bagi korban penyalahgunaan. Keluarga berperan vital untuk membawa korban melapor ke IPWL (Institusi Penerima Wajib Lapor) sebelum tertangkap aparat.</p>
 
-                    <h3>7 Tahap Ketergantungan (Hafalkan!):</h3>
+                    <h3>7 Tahap Ketergantungan (Wajib Dihafal!):</h3>
                     <ol>
-                        <li><b>Kompromi:</b> Tidak tegas menolak lingkungan toksik.</li>
-                        <li><b>Coba-coba:</b> Mulai mencicipi.</li>
-                        <li><b>Toleransi:</b> Tubuh kebal, pecandu butuh <b>DOSIS LEBIH BESAR</b> untuk efek yang sama. Sangat rentan Over-Dosis!</li>
-                        <li><b>Kebiasaan:</b> Mulai bolos sekolah dan antisosial.</li>
-                        <li><b>Ketergantungan:</b> Timbul gejala Putus Obat (Sakau).</li>
-                        <li><b>Intoksifitas:</b> Keracunan organ tubuh dan otak.</li>
+                        <li><b>Kompromi:</b> Tidak berani/tegas menolak saat diajak teman di lingkungan toksik.</li>
+                        <li><b>Coba-coba:</b> Mulai mencicipi karena penasaran.</li>
+                        <li><b>Toleransi:</b> Tubuh mulai kebal. Pecandu butuh <b>DOSIS LEBIH BESAR</b> untuk mendapatkan efek <i>high</i> yang sama. Di fase ini Over-Dosis (OD) sering terjadi!</li>
+                        <li><b>Kebiasaan:</b> Pemakaian rutin. Mulai bolos sekolah, berbohong, dan antisosial.</li>
+                        <li><b>Ketergantungan:</b> Sel sel otak menuntut zat tersebut. Timbul gejala <i>Sakau</i> (Putus Obat) yang amat menyakitkan jika berhenti.</li>
+                        <li><b>Intoksifitas:</b> Keracunan organ tubuh akut, ginjal rusak, otak mengecil.</li>
                         <li><b>Meninggal Dunia.</b></li>
                     </ol>
                 `,
                 alatTitle: "Detektif Klasifikasi Barang Bukti",
                 alatHTML: `
                     <div class="lab-container">
-                        <p style="margin-bottom:15px; font-weight:bold;">Klik tombol untuk identifikasi hukumnya.</p>
-                        <button class="btn-lab" style="background:#0f172a;" onclick="alert('GANJA: Narkotika Golongan 1. Sangat adiktif dan dilarang keras untuk obat di Indonesia.')">🌿 Cek Ganja</button>
-                        <button class="btn-lab" style="background:#0f172a;" onclick="alert('VODKA: Zat Adiktif Golongan C. Etanol 20-55%. Menghancurkan liver.')">🥃 Cek Vodka</button>
-                        <button class="btn-lab" style="background:#0f172a;" onclick="alert('EKSTASI: Psikotropika. Merusak sistem saraf pusat.')">💊 Cek Ekstasi</button>
+                        <p style="margin-bottom:15px; font-weight:bold;">Klik tombol untuk identifikasi hukumnya menurut BNN.</p>
+                        <button class="btn-lab" style="background:#0f172a;" onclick="alert('GANJA: Narkotika Golongan 1. Sangat adiktif dan dilarang keras untuk obat/medis di Indonesia.')">🌿 Cek Ganja</button>
+                        <button class="btn-lab" style="background:#0f172a;" onclick="alert('VODKA: Zat Adiktif Golongan C. Etanol 20-55%. Menghancurkan liver dalam jangka panjang.')">🥃 Cek Vodka</button>
+                        <button class="btn-lab" style="background:#0f172a;" onclick="alert('EKSTASI: Psikotropika. Langsung merusak sistem saraf pusat (otak).')">💊 Cek Ekstasi</button>
                     </div>
                 `,
                 quiz: [
-                    { q: "Pada tahap apa tubuh mulai kebal sehingga pecandu membutuhkan dosis obat yang lebih besar?", opts: ["A. Intoksifitas", "B. Toleransi", "C. Kebiasaan"], ans: 1, exp: "Toleransi adalah fase berbahaya memicu over-dosis." },
-                    { q: "Minuman beralkohol jenis Arak dan Vodka dengan kadar Etanol 20%-55% termasuk golongan...", opts: ["A. Golongan A", "B. Golongan B", "C. Golongan C"], ans: 2, exp: "Gol A (1-5%), Gol B (5-20%), Gol C (20-55%)." },
-                    { q: "Mengapa Narkotika Gol I dilarang untuk pengobatan medis di Indonesia?", opts: ["A. Potensi ketergantungannya SANGAT TINGGI", "B. Terlalu mahal", "C. Susah didapat"], ans: 0, exp: "Gol I (Ganja, Heroin) daya adiksi mematikan, hanya untuk riset." }
+                    { q: "Pada tahap apa tubuh mulai kebal sehingga pecandu membutuhkan dosis obat yang lebih besar secara terus-menerus?", opts: ["A. Intoksifitas", "B. Toleransi", "C. Kebiasaan"], ans: 1, exp: "Fase Toleransi adalah fase yang sangat mematikan karena memicu over-dosis akibat dosis yang terus ditambah." },
+                    { q: "Minuman beralkohol jenis Arak dan Vodka dengan kadar Etanol tinggi 20%-55% termasuk golongan...", opts: ["A. Golongan A", "B. Golongan B", "C. Golongan C"], ans: 2, exp: "Gol A (1-5%), Gol B (5-20%), Gol C (20-55%)." },
+                    { q: "Jika seorang teman diketahui kecanduan berat (korban), langkah terbaik yang bisa menyelamatkannya secara hukum dan medis adalah...", opts: ["A. Membiarkannya sampai tertangkap polisi", "B. Membawanya melapor ke fasilitas IPWL untuk proses Rehabilitasi", "C. Memasungnya di dalam kamar"], ans: 1, exp: "IPWL (Institusi Penerima Wajib Lapor) adalah jalur resmi negara untuk memfasilitasi rehabilitasi korban tanpa jerat pidana (jika lapor sukarela)." }
                 ],
-                misi: ["Latih berkata 'TIDAK' tegas pada ajakan merokok", "Pahami bahaya toleransi dosis", "Edukasi 1 teman tentang 7 Tahap NAPZA"]
+                misi: ["Latih berkata 'TIDAK' tegas pada ajakan merokok", "Pahami bahaya toleransi dosis narkotika", "Edukasi 1 teman tentang opsi Rehabilitasi (IPWL)"]
             },
             {
-                id: "nikah", icon: "💍", title: "Pernikahan Anak", subtitle: "PUP & Kesiapan Keluarga",
+                id: "nikah", icon: "💍", title: "Pernikahan Anak", subtitle: "PUP & Kesiapan Mental",
                 literasi: `
-                    <div class="infobox info-green"><b>Pendewasaan Usia Perkawinan (PUP):</b><br>Usia matang biologis dan psikologis untuk menikah adalah <b>21 tahun (Perempuan)</b> dan <b>25 tahun (Laki-laki)</b>.</div>
+                    <div class="infobox info-green"><b>Pendewasaan Usia Perkawinan (PUP):</b><br>Usia matang biologis, psikologis, dan finansial untuk menikah menurut anjuran BKKBN adalah minimal <b>21 tahun (Perempuan)</b> dan <b>25 tahun (Laki-laki)</b>.</div>
                     
                     <h3>Dampak Fatal Nikah Dini (Di bawah 19 thn)</h3>
-                    <p>Secara medis, rahim remaja masih tumbuh dan <b>berebut gizi dengan janin</b>, memicu lahirnya <b>Bayi Stunting</b>. Secara psikologis, emosi labil menyebabkan kasus perceraian tertinggi terjadi pada pernikahan di bawah usia 5 tahun.</p>
+                    <p>Secara medis, organ panggul dan rahim remaja putri masih dalam masa pertumbuhan. Jika ia hamil, gizinya akan <b>berebut dengan janin yang dikandung</b>, memicu lahirnya <b>Bayi Stunting</b>, kelahiran prematur, hingga pendarahan fatal saat persalinan (kematian ibu).</p>
+                    <p>Secara sosial & emosional, emosi remaja yang masih sangat labil menyebabkan rentannya KDRT (Kekerasan Dalam Rumah Tangga). Faktanya, Pengadilan Agama mencatat angka perceraian tertinggi justru didominasi oleh pasangan yang menikah di bawah usia 19 tahun, meninggalkan trauma panjang bagi anak mereka kelak.</p>
 
                     <h3>10 Dimensi Kesiapan Berkeluarga:</h3>
+                    <p>BKKBN menetapkan 10 tolak ukur sebelum seseorang mantap mengarungi rumah tangga (menghadapi inflasi dan dinamika sosial):</p>
                     <ul style="column-count:2;">
                         <li>1. Kesiapan Usia</li>
-                        <li>2. Kesiapan Fisik</li>
-                        <li>3. Kesiapan Mental</li>
-                        <li>4. Kesiapan Finansial</li>
+                        <li>2. Kesiapan Fisik (Biologis)</li>
+                        <li>3. Kesiapan Mental (Tahan banting)</li>
+                        <li>4. Kesiapan Finansial (Mandiri)</li>
                         <li>5. Kesiapan Moral</li>
                         <li>6. Kesiapan Emosi</li>
                         <li>7. Kesiapan Sosial</li>
-                        <li>8. Kesiapan Interpersonal</li>
-                        <li>9. Keterampilan Hidup</li>
-                        <li>10. Kesiapan Intelektual</li>
+                        <li>8. Kesiapan Interpersonal (Komunikasi)</li>
+                        <li>9. Keterampilan Hidup (Life Skill)</li>
+                        <li>10. Kesiapan Intelektual (Ilmu Parenting)</li>
                     </ul>
                 `,
                 alatTitle: "Simulasi Finansial 1 Bulan Pertama",
                 alatHTML: `
                     <div class="lab-container">
-                        <p style="margin-bottom:15px; font-weight:bold;">Geser slider untuk melihat beban finansial per bulan.</p>
+                        <p style="margin-bottom:15px; font-weight:bold;">Geser slider untuk melihat beban finansial per bulan setelah menikah.</p>
                         <input type="range" id="sl-nikah" min="1500000" max="6000000" step="500000" value="3000000" oninput="document.getElementById('hsl-nikah').innerText = 'Rp ' + parseInt(this.value).toLocaleString('id-ID')">
                         <h2 id="hsl-nikah" style="color:var(--danger); margin:15px 0; font-size:32px;">Rp 3.000.000</h2>
-                        <button class="btn-lab" onclick="alert('Itu baru hitungan kasar! Belum termasuk bensin, listrik, kesehatan, dll. Siap mental cari uang segitu tiap bulan?')">Cek Fakta</button>
+                        <button class="btn-lab" onclick="alert('Itu baru hitungan kasar kontrakan rumah dan beras! Belum termasuk susu anak, popok, bensin, listrik, BPJS kesehatan, hingga inflasi tahunan. Siapkah mental dan gajimu?')">Cek Realita Finansial</button>
                     </div>
                 `,
                 quiz: [
-                    { q: "Berapa usia ideal minimal menikah menurut anjuran BKKBN (PUP)?", opts: ["A. Perempuan 19 th, Laki-laki 21 th", "B. Perempuan 21 th, Laki-laki 25 th", "C. Keduanya 25 th"], ans: 1, exp: "PUP menetapkan 21 tahun (P) dan 25 tahun (L)." },
-                    { q: "Dimensi yang mengatur kemampuan mendengarkan dan menghargai pasangan adalah kesiapan...", opts: ["A. Intelektual", "B. Moral", "C. Interpersonal"], ans: 2, exp: "Kesiapan Interpersonal adalah kunci komunikasi suami istri." },
-                    { q: "Kenapa kehamilan usia remaja berisiko tinggi melahirkan bayi stunting?", opts: ["A. Rahim ibu remaja masih masa pertumbuhan, nutrisi berebut dengan janin", "B. Karena orang tuanya malas masak", "C. Mitos orang zaman dulu"], ans: 0, exp: "Fakta medis: tubuh ibu dan janin saling berebut nutrisi." }
+                    { q: "Berapa usia ideal minimal menikah menurut program PUP BKKBN?", opts: ["A. Perempuan 19 th, Laki-laki 21 th", "B. Perempuan 21 th, Laki-laki 25 th", "C. Keduanya bebas asalkan kaya"], ans: 1, exp: "PUP menetapkan 21 tahun (P) dan 25 tahun (L) demi kematangan sel panggul dan mental finansial." },
+                    { q: "Dimensi yang mengatur kemampuan mendengarkan, menurunkan ego, dan menghargai pendapat pasangan adalah kesiapan...", opts: ["A. Intelektual", "B. Moral", "C. Interpersonal"], ans: 2, exp: "Kesiapan Interpersonal adalah kunci komunikasi dua arah (suami-istri) agar tak mudah cerai." },
+                    { q: "Alasan utama secara medis mengapa kehamilan usia remaja berisiko tinggi melahirkan bayi stunting?", opts: ["A. Rahim dan tulang ibu remaja masih masa pertumbuhan, nutrisi berebut dengan janin", "B. Karena orang tuanya belum bisa masak", "C. Itu hanyalah mitos orang zaman dulu"], ans: 0, exp: "Fakta medis: tubuh ibu remaja dan janin saling memperebutkan kalsium dan nutrisi yang sama." }
                 ],
-                misi: ["Hafalkan 10 Dimensi Kesiapan Berkeluarga", "Fokus tamatkan pendidikan setinggi mungkin", "Tunda pernikahan hingga usia ideal (21/25)"]
+                misi: ["Hafalkan 10 Dimensi Kesiapan Berkeluarga", "Fokus tamatkan jenjang pendidikan setinggi mungkin", "Tunda dan tolak bujukan pernikahan dini"]
             },
             {
-                id: "seksual", icon: "🛑", title: "Kekerasan Seksual", subtitle: "PP TUNAS & Child Grooming",
+                id: "seksual", icon: "🛑", title: "Kekerasan Seksual", subtitle: "PP TUNAS & Grooming",
                 literasi: `
-                    <div class="infobox info-red"><b>Darurat Kekerasan Anak 2025:</b><br>BKKBN mencatat <b>11.049 kasus</b> kekerasan seksual anak!</div>
+                    <div class="infobox info-red"><b>Darurat Kekerasan Anak:</b><br>BKKBN mencatat tingginya angka kekerasan seksual anak! INGAT: Korban tidak pernah salah. Berhenti menyalahkan pakaian korban (Victim Blaming). Pakaian bukan penyebab, melainkan niat predator!</div>
                     
-                    <h3>PP TUNAS No. 17 Tahun 2025</h3>
-                    <p>Berlaku <b>28 Maret 2026</b>. Peraturan ini mewajibkan platform digital (WA, TikTok, dll) untuk melindungi anak. <b>Dilarang keras melakukan <i>Profiling</i></b> (mengambil data algoritma anak untuk eksploitasi komersial).</p>
+                    <h3>Child Grooming: Manipulasi Psikologis</h3>
+                    <p>Predator saat ini tidak lagi memaksa secara fisik di awal. Mereka menggunakan taktik <i>Grooming</i>: <b>Mendekati/Kenalan ➔ Membangun Kepercayaan/Merasa Dekat ➔ Membuat 'Rahasia Bersama' (memberi hadiah diam-diam) ➔ Melakukan Eksploitasi ➔ Mengontrol Korban dengan Ancaman.</b></p>
+                    <p><b>Consent (Persetujuan):</b> Dalam ranah apa pun, memegang atau menyentuh bagian pribadi seseorang tanpa persetujuan yang sadar (Consent) adalah pelecehan. Diamnya seseorang saat digoda (Catcalling) BUKAN berarti ia setuju, melainkan sering kali ia membeku ketakutan (<i>Tonic Immobility</i>).</p>
 
-                    <h3>Waspada Child Grooming!</h3>
-                    <p>Taktik predator manipulatif: <b>Kenalan ➔ Merasa Dekat ➔ Membuat Rahasia Bersama ➔ Mengontrol Korban.</b><br>
-                    Kamu dilindungi oleh <b>UU TPKS</b> yang menjamin kerahasiaan identitas korban.</p>
+                    <h3>PP TUNAS & UU TPKS (Hukum Perlindungan)</h3>
+                    <p><b>PP TUNAS No. 17 Tahun 2025</b> (Berlaku <b>28 Maret 2026</b>) hadir untuk melindungi ranah digital. Peraturan ini mewajibkan platform media sosial untuk membersihkan konten predator dan <b>Dilarang keras melakukan <i>Profiling</i></b> (mengambil data perilaku anak untuk target iklan/eksploitasi komersial).</p>
+                    <p>Sementara <b>UU TPKS (Tindak Pidana Kekerasan Seksual)</b> memastikan bahwa aparat dilarang menolak laporan korban dengan alasan 'kurang bukti' (bahkan 1 alat bukti + keterangan saksi korban sudah cukup!), serta identitas korban WAJIB dirahasiakan oleh media.</p>
                 `,
                 alatTitle: "Portal Darurat & Ruang Aman",
                 alatHTML: `
-                    <div class="lab-container">
-                        <p style="margin-bottom:15px; font-weight:bold;">Modul ini terhubung ke portal perlindungan anak BAKTI.</p>
-                        <a href="https://adib-crazyman.github.io/BAKTI/" style="background:var(--danger); color:white; padding:15px 30px; text-decoration:none; border-radius:10px; font-weight:bold; display:inline-block;">🚨 Lapor ke BAKTI Sekarang</a>
+                    <div class="lab-container" style="background:#fff1f2; border-color:var(--danger);">
+                        <p style="margin-bottom:15px; font-weight:bold; color:var(--danger);">Modul ini terhubung ke portal darurat nasional. Kamu tidak sendirian.</p>
+                        <a href="https://adib-crazyman.github.io/BAKTI/" target="_blank" style="background:var(--danger); color:white; padding:15px 30px; text-decoration:none; border-radius:10px; font-weight:bold; display:inline-block; transition:0.3s; box-shadow:0 4px 15px rgba(225,29,72,0.4);">🚨 Lapor ke BAKTI Sekarang</a>
                     </div>
                 `,
                 quiz: [
-                    { q: "Kapan PP TUNAS No. 17 Tahun 2025 resmi berlaku penuh?", opts: ["A. 1 Januari 2025", "B. 28 Maret 2026", "C. 17 Agustus 2025"], ans: 1, exp: "Masa transisi selesai pada 28 Maret 2026." },
-                    { q: "Taktik memanipulasi emosi korban hingga membuat 'rahasia' disebut...", opts: ["A. Child Grooming", "B. Cyberbullying", "C. Gaslighting"], ans: 0, exp: "Grooming adalah pendekatan predator yang sangat mematikan." },
-                    { q: "Tindakan merekam jejak aktivitas anak di internet untuk tujuan komersial yang dilarang PP TUNAS disebut?", opts: ["A. Hacking", "B. Profiling", "C. Phishing"], ans: 1, exp: "Profiling data anak dilarang keras oleh PP TUNAS." }
+                    { q: "Kapan PP TUNAS No. 17 Tahun 2025 resmi berlaku penuh secara hukum?", opts: ["A. 1 Januari 2025", "B. 28 Maret 2026", "C. 17 Agustus 2025"], ans: 1, exp: "Masa transisi adaptasi platform digital selesai pada 28 Maret 2026." },
+                    { q: "Taktik memanipulasi emosi korban secara perlahan, memberi hadiah, hingga membuat 'rahasia bersama' disebut...", opts: ["A. Child Grooming", "B. Cyberbullying", "C. Gaslighting"], ans: 0, exp: "Grooming adalah pendekatan psikologis predator yang sangat mematikan agar anak merasa bersalah jika menolak." },
+                    { q: "Menyalahkan pakaian korban atas terjadinya tindak pelecehan seksual dikenal dengan istilah toxic...", opts: ["A. Body Shaming", "B. Victim Blaming", "C. Impostor Syndrome"], ans: 1, exp: "Victim Blaming (menyalahkan korban) sangat menghancurkan mental korban untuk berani melapor." }
                 ],
-                misi: ["Simpan nomor darurat SAPA 129", "Filter daftar *Following* di sosmed-mu", "Dukung implementasi UU TPKS & PP TUNAS"]
+                misi: ["Simpan nomor darurat SAPA 129 di HP-mu", "Berhenti melakukan Catcalling pada siapapun", "Dukung implementasi UU TPKS & PP TUNAS"]
             },
             {
                 id: "fatherless", icon: "👨‍👧", title: "Fatherless & Parenting", subtitle: "Gerakan Ayah Teladan",
                 literasi: `
-                    <div class="infobox info-blue"><b>Darurat Kehadiran Ayah:</b><br>Indonesia memiliki rasio *Fatherless* (Ketiadaan sosok ayah secara fisik/psikologis) yang tinggi, memicu remaja rentan depresi dan kehilangan jati diri.</div>
+                    <div class="infobox info-blue"><b>Darurat Kehadiran Sosok Ayah:</b><br>Indonesia berada di peringkat atas negara penderita <i>Fatherless</i> (Ketiadaan sosok ayah baik secara fisik maupun psikologis). Ayah ada di rumah, namun tidak pernah mengobrol dengan anak.</div>
                     
-                    <h3>Program Utama BKKBN (Kemendukbangga)</h3>
-                    <p>Pengasuhan anak BUKAN HANYA tugas Ibu. BKKBN meluncurkan:</p>
+                    <h3>Dampak Kekosongan Emosi</h3>
+                    <p>Remaja yang kehilangan figur ayah (sebagai cinta pertama anak perempuan dan role model anak laki-laki) sangat rentan mengalami krisis jati diri, depresi, hingga mudah terjerat dalam hubungan asmara toksik. Mereka mencari 'validasi' yang hilang di rumah pada orang asing yang seringkali memanipulasi mereka.</p>
+                    <p><b>Solusi Pengganti:</b> Jika figur biologis tidak ada, remaja bisa mencari <i>Role Model</i> pengganti yang positif, seperti Guru, Kakek, atau Paman yang bisa memberikan arahan moral tegas namun penuh kasih.</p>
+
+                    <h3>Program Utama KemenDukBangga</h3>
+                    <p>Pengasuhan anak BUKAN HANYA tugas domestik Ibu. BKKBN meluncurkan serangkaian program pemutusan rantai:</p>
                     <ul>
-                        <li><b>GATI (Gerakan Ayah Teladan):</b> Program super prioritas kementerian baru.</li>
-                        <li><b>GAT-LINK:</b> Kelas Gerakan Ayah Teladan.</li>
-                        <li><b>KOMPAK TENAN:</b> Konsorsium Penggiat Ayah Teladan.</li>
-                        <li><b>SEBAYA:</b> Sekolah Bersama Ayah (Beririsan dengan PIK-R dan SSK).</li>
+                        <li><b>GATI (Gerakan Ayah Teladan):</b> Program super prioritas kementerian untuk melatih para ayah kembali memeluk dan mendengarkan anaknya.</li>
+                        <li><b>GAT-LINK:</b> Kelas/Bimbingan Gerakan Ayah Teladan.</li>
+                        <li><b>KOMPAK TENAN:</b> Konsorsium Penggiat Ayah Teladan (Perkumpulan relawan).</li>
+                        <li><b>SEBAYA:</b> Sekolah Bersama Ayah (Sangat beririsan dengan kegiatan ekstrakurikuler PIK-R dan SSK di sekolah).</li>
                     </ul>
                 `,
                 alatTitle: "Afirmasi & Penyembuhan Diri",
                 alatHTML: `
                     <div class="lab-container">
-                        <p style="margin-bottom:15px;">Dapatkan afirmasi positif untuk menyembuhkan <i>Inner Child</i>.</p>
-                        <button class="btn-lab" onclick="document.getElementById('res-afir').style.display='block'; document.getElementById('res-afir').innerText='Kamu berharga. Luka masa lalumu tidak mendefinisikan masa depanmu.'">Validasi Perasaanku</button>
-                        <div id="res-afir" class="lab-result" style="font-style:italic; font-size:18px;"></div>
+                        <p style="margin-bottom:15px;">Dapatkan afirmasi positif untuk memeluk dan menyembuhkan luka batin (<i>Inner Child</i>).</p>
+                        <button class="btn-lab" style="background:#0284c7;" onclick="document.getElementById('res-afir').style.display='block'; document.getElementById('res-afir').innerHTML='Kamu sangat berharga. Luka masa lalumu dan ketiadaan orang tuamu tidak pernah mendefinisikan seberapa besar potensi masa depanmu. Bangkitlah.'">Validasi Perasaanku</button>
+                        <div id="res-afir" class="lab-result" style="font-style:italic; font-size:18px; color:var(--text-main);"></div>
                     </div>
                 `,
                 quiz: [
-                    { q: "Apa nama program prioritas Kementerian untuk mengedukasi peran ayah?", opts: ["A. GENTING", "B. GATI (Gerakan Ayah Teladan)", "C. TAMASYA"], ans: 1, exp: "GATI adalah fokus pemerintah memutus rantai fatherless." },
-                    { q: "Dampak psikologis remaja korban 'Fatherless' adalah...", opts: ["A. Mandiri secara emosi", "B. Rentan mencari validasi pada hubungan toxic", "C. Cepat sukses"], ans: 1, exp: "Kekosongan emosi sering diisi oleh figur manipulatif." },
-                    { q: "Program edukasi ayah yang diselenggarakan bersamaan dengan PIK-R/SSK di sekolah disebut?", opts: ["A. KOMPAK TENAN", "B. SEBAYA", "C. GAT-LINK"], ans: 1, exp: "SEBAYA (Sekolah Bersama Ayah)." }
+                    { q: "Apa nama program prioritas Kementerian untuk mengedukasi kembalinya peran ayah dalam keluarga?", opts: ["A. GENTING", "B. GATI (Gerakan Ayah Teladan)", "C. TAMASYA"], ans: 1, exp: "GATI adalah fokus pemerintah memutus rantai fatherless di Indonesia." },
+                    { q: "Dampak psikologis remaja korban 'Fatherless' ketika mulai mengenal cinta adalah...", opts: ["A. Mandiri secara emosi", "B. Rentan mencari validasi pada hubungan toxic demi kasih sayang", "C. Cepat sukses dan kaya"], ans: 1, exp: "Kekosongan emosi dari figur ayah sering kali dimanfaatkan oleh predator manipulatif." },
+                    { q: "Program edukasi ayah yang diselenggarakan terintegrasi bersamaan dengan PIK-R/SSK di sekolah disebut?", opts: ["A. KOMPAK TENAN", "B. SEBAYA (Sekolah Bersama Ayah)", "C. GAT-LINK"], ans: 1, exp: "SEBAYA bertujuan menarik ayah ke dalam dunia pendidikan anak remajanya." }
                 ],
-                misi: ["Ucapkan rasa syukur untuk dirimu hari ini", "Maafkan luka masa lalu secara perlahan", "Pahami arti penting kehadiran utuh orang tua"]
+                misi: ["Ucapkan rasa syukur dan peluk dirimu sendiri hari ini", "Maafkan perlahan luka batin masa lalu (Inner Child)", "Pahami bahwa mengasuh anak adalah tugas tim Ayah & Ibu"]
             },
             {
                 id: "mental", icon: "🧘‍♂️", title: "Kesehatan Mental", subtitle: "Validasi & Psikologi",
                 literasi: `
-                    <div class="infobox info-yellow"><b>It's Okay Not To Be Okay.</b><br>Kesehatan mental sama berharganya dengan fisik. Tapi ingat, jangan lakukan <i>self-diagnose</i>!</div>
+                    <div class="infobox info-yellow"><b>It's Okay Not To Be Okay.</b><br>Kesehatan mental sama berharganya dengan menjaga fisik. Tapi ingat satu aturan emas: <b>JANGAN PERNAH lakukan <i>Self-Diagnose</i></b> (mendiagnosis diri sendiri pakai video TikTok)!</div>
                     
-                    <h3>Memahami Prokrastinasi</h3>
-                    <p>Menunda pekerjaan secara sengaja <b>bukan sekadar malas</b>. Ini adalah mekanisme otak menghindari kecemasan/stres akan kegagalan. Solusinya: Lakukan <i>Baby Steps</i> (mulai dari 5 menit pertama).</p>
+                    <h3>Stres Normal vs Depresi Klinis</h3>
+                    <p>Merasa sedih saat gagal ujian adalah stres <b>Normal</b>. Namun, jika rasa hampa, kehilangan nafsu makan, insomnia akut, dan keinginan menyakiti diri itu menetap lebih dari <b>2 minggu berturut-turut</b>, itu bisa mengarah pada <b>Depresi Klinis</b>. Jangan dipendam, hubungi konselor atau psikolog profesional.</p>
+                    <p><b>Hapus Stigma:</b> Datang ke psikolog BUKAN berarti kamu gila. Sama seperti kamu ke dokter gigi karena sakit gigi, psikolog adalah dokter untuk pikiranmu.</p>
 
-                    <h3>Waspada ADHD</h3>
-                    <p>Gangguan saraf yang gejalanya terpusat pada <b>Inatensi</b> (sulit fokus), <b>Hiperaktif</b>, dan <b>Impulsif</b> secara terus-menerus sejak kecil.</p>
+                    <h3>Memahami Prokrastinasi & ADHD</h3>
+                    <p><b>Prokrastinasi:</b> Menunda pekerjaan penting secara terus-menerus <b>bukan sekadar malas</b>. Ini seringkali merupakan mekanisme otak menghindari kecemasan akan kesempurnaan (Perfeksionis) atau takut gagal. Solusinya: Lakukan teknik <i>Baby Steps</i> (mulai cicil dari 5 menit pertama, otak akan mengalir dengan sendirinya).</p>
+                    <p><b>ADHD (Attention Deficit Hyperactivity Disorder):</b> Gangguan neurodevelopmental (saraf otak) yang gejalanya terpusat pada <b>Inatensi</b> (sangat sulit fokus pada satu hal), <b>Hiperaktif</b> (selalu gelisah bergerak), dan <b>Impulsif</b> secara berkelanjutan sejak masa kanak-kanak.</p>
                 `,
                 alatTitle: "Terapi Relaksasi: Box Breathing",
                 alatHTML: `
                     <div class="lab-container">
-                        <p style="margin-bottom:15px; font-weight:bold;">Tarik napas 4 dtk, Tahan 4 dtk, Hembuskan 4 dtk.</p>
+                        <p style="margin-bottom:15px; font-weight:bold;">Teknik Militer AS: Tarik napas 4 dtk, Tahan 4 dtk, Hembuskan 4 dtk.</p>
                         <div style="width: 80px; height: 80px; background: var(--primary); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto; color:white; font-weight:800; animation: boxBreathe 16s infinite ease-in-out;">NAFAS</div>
                         <style>@keyframes boxBreathe { 0%, 100% {transform: scale(1);} 25%, 50% {transform: scale(1.5); border-radius:50%; background:var(--secondary);} }</style>
                     </div>
                 `,
                 quiz: [
-                    { q: "Perilaku menunda pekerjaan penting yang sebenarnya adalah mekanisme otak menghindari kecemasan disebut?", opts: ["A. Insomnia", "B. Prokrastinasi", "C. Skizofrenia"], ans: 1, exp: "Prokrastinasi adalah respon emosional terhadap stres tugas." },
-                    { q: "Gangguan saraf dengan gejala sulit fokus (Inatensi), hiperaktif, dan impulsif disebut?", opts: ["A. ADHD", "B. Bipolar", "C. OCD"], ans: 0, exp: "Attention Deficit Hyperactivity Disorder." },
-                    { q: "Apa tindakan terbaik jika merasa tertekan berat berhari-hari?", opts: ["A. Self-diagnose dari TikTok", "B. Memendam sendiri", "C. Curhat ke konselor/profesional"], ans: 2, exp: "Jangan pernah self-diagnose!" }
+                    { q: "Perilaku menunda pekerjaan penting yang sebenarnya adalah mekanisme otak untuk menghindari kecemasan disebut?", opts: ["A. Insomnia", "B. Prokrastinasi", "C. Skizofrenia"], ans: 1, exp: "Prokrastinasi adalah respon emosional terhadap stres dan tekanan tugas." },
+                    { q: "Gangguan saraf bawaan dengan gejala khas sulit fokus (Inatensi), hiperaktif, dan impulsif disebut?", opts: ["A. ADHD", "B. Bipolar", "C. OCD"], ans: 0, exp: "Attention Deficit Hyperactivity Disorder adalah kondisi medis, bukan sekedar 'anak nakal'." },
+                    { q: "Apa tindakan terburuk jika kamu merasa memiliki gejala gangguan jiwa setelah menonton video di sosmed?", opts: ["A. Bercerita ke guru BK", "B. Melakukan Self-Diagnose dan meminum obat sembarangan", "C. Datang ke psikolog profesional"], ans: 1, exp: "Self-Diagnose sangat berbahaya karena gejalanya seringkali tumpang tindih dengan hal lain." }
                 ],
-                misi: ["Lakukan Box Breathing 3 Menit hari ini", "Tidur minimal 7 Jam", "Berhenti melakukan *Self-Diagnose* penyakit mental"]
+                misi: ["Lakukan Box Breathing 3 Menit sebelum tidur", "Tidur cukup minimal 7-8 Jam", "Berhenti melabeli dirimu dengan diagnosis penyakit mental buatan sendiri"]
             },
             {
-                id: "bully", icon: "💬", title: "Bullying", subtitle: "Efek Bystander",
+                id: "bully", icon: "💬", title: "Bullying", subtitle: "Bystander Effect & ITE",
                 literasi: `
-                    <div class="infobox info-red"><b>Hentikan Siklus Perundungan!</b><br>Dalam bullying, musuh terbesar korban selain pelaku adalah <b>Bystander Effect</b> (Penonton yang diam saja).</div>
-                    <p>Membela korban butuh keberanian. Diammu atau tawamu saat teman diejek adalah sinyal dukungan bagi pelaku bahwa tindakannya benar. Alihkan topik pembicaraan atau laporkan pada guru/pihak berwenang secara diam-diam.</p>
+                    <div class="infobox info-red"><b>Hentikan Siklus Perundungan!</b><br>Dalam arena bullying, musuh terbesar korban selain si pelaku adalah <b>Bystander Effect</b> (Penonton yang diam saja atau malah merekam kejadian).</div>
+                    
+                    <h3>Dosa Diam: Bystander</h3>
+                    <p>Membela korban memang butuh keberanian. Tapi ketahuilah, diammu, senyummu, atau tawamu saat melihat teman diejek adalah "bahan bakar" dan "sinyal dukungan" bagi pelaku bahwa tindakannya itu keren dan dibenarkan lingkungan. Taktik cerdas membela: <b>Alihkan topik pembicaraan segera</b> untuk merusak momentum pelaku, lalu laporkan pada guru/pihak berwenang secara diam-diam.</p>
+
+                    <h3>Cyberbullying & Jerat Hukum</h3>
+                    <p>Bullying tidak hanya pukulan fisik. <b>Cyberbullying</b> (meninggalkan komentar jahat, menyebarkan aib, membuat grup khusus untuk mengucilkan teman) memiliki dampak psikologis yang jauh lebih mematikan karena jejak digital tidak bisa dihapus total. Pelaku <i>body-shaming</i> ekstrem dan penyebar aib di ranah digital kini bisa dengan mudah dijerat <b>UU ITE (Informasi dan Transaksi Elektronik)</b> dengan ancaman pidana dan denda fantastis.</p>
                 `,
                 alatTitle: "Simulasi Keputusan Sosial",
                 alatHTML: `
                     <div class="lab-container">
-                        <p style="margin-bottom:15px; font-weight:bold;">Temanmu diejek fisik (body shaming) di grup WA kelas. Aksimu?</p>
-                        <button class="btn-lab" style="background:var(--danger);" onclick="alert('SALAH! Diam berarti kamu mendukung pelaku (Bystander effect).')">Diam Saja / Ikut Ketawa</button>
-                        <button class="btn-lab" style="background:var(--success);" onclick="alert('BENAR! Mengalihkan topik akan merusak momentum pelaku, lalu hubungi korban secara personal.')">Kirim Meme / Alihkan Topik</button>
+                        <p style="margin-bottom:15px; font-weight:bold;">Temanmu tiba-tiba diejek fisik bawaan lahirnya (Ableism/Body shaming) di grup WA kelas. Aksimu?</p>
+                        <button class="btn-lab" style="background:var(--danger);" onclick="alert('SALAH! Diam saja berarti kamu mendukung perbuatan pelaku (Bystander effect). Pelaku akan merasa dirinya penguasa grup.')">Diam Saja / Ikut Ketawa</button>
+                        <button class="btn-lab" style="background:var(--success);" onclick="alert('BENAR! Mengalihkan topik (seperti bertanya PR) akan mencuri dan merusak panggung pelaku. Setelah itu, pastikan hubungi korban secara personal agar ia tak merasa sendirian.')">Kirim Meme / Alihkan Topik Tiba-tiba</button>
                     </div>
                 `,
                 quiz: [
-                    { q: "Sikap orang yang hanya menonton dan diam saja saat perundungan terjadi disebut?", opts: ["A. Bystander Effect", "B. Butterfly Effect", "C. Gaslighting"], ans: 0, exp: "Bystander secara tidak langsung menyuburkan bullying." },
-                    { q: "Tindakan paling aman saat melihat teman di-bully secara verbal di grup sosial media adalah...", opts: ["A. Mengalihkan pembicaraan, lalu mensupport korban", "B. Mengajak pelaku berantem fisik", "C. Keluar dari grup dan blokir semua"], ans: 0, exp: "Mengalihkan tensi dan menemani korban adalah taktik asertif." },
-                    { q: "Candaan yang merendahkan fisik atau kondisi bawaan teman disebut?", opts: ["A. Ableism / Body shaming", "B. Sarkasme", "C. Dark jokes"], ans: 0, exp: "Ableism sangat menyakiti psikologis korban." }
+                    { q: "Sikap sekelompok orang yang hanya menonton dan diam saja saat perundungan terjadi di depan mata disebut fenomena...", opts: ["A. Bystander Effect", "B. Butterfly Effect", "C. Gaslighting"], ans: 0, exp: "Bystander secara pasif justru menyuburkan iklim bullying." },
+                    { q: "Tindakan paling asertif dan aman saat melihat teman di-bully secara verbal di tongkrongan adalah...", opts: ["A. Mengalihkan pembicaraan mencuri fokus pelaku, lalu mensupport korban", "B. Langsung memukul pelaku secara fisik", "C. Pulang ke rumah dan memblokir kontak pelaku"], ans: 0, exp: "Mengalihkan tensi dan menemani korban adalah taktik cerdas mematikan momentum." },
+                    { q: "Candaan kasar yang sengaja merendahkan kondisi fisik atau disabilitas bawaan teman disebut?", opts: ["A. Ableism / Body shaming", "B. Sarkasme biasa", "C. Dark jokes tongkrongan"], ans: 0, exp: "Ableism sangat diskriminatif dan membekas pada psikologis korban." }
                 ],
-                misi: ["Berani *speak up* saat ada bullying di grup", "Berikan pujian tulus pada 1 teman", "Jangan bagikan aib orang lain di medsos"]
+                misi: ["Berani speak-up atau alihkan topik saat ada bullying", "Berikan satu pujian tulus pada temanmu hari ini", "Pikir 3 kali sebelum mengetik komentar di media sosial"]
             },
             {
-                id: "lifeskill", icon: "⏱️", title: "Kecakapan Hidup", subtitle: "Sikap Asertif & Adversity",
+                id: "lifeskill", icon: "⏱️", title: "Kecakapan Hidup", subtitle: "Sikap Asertif & AQ",
                 literasi: `
-                    <div class="infobox info-purple"><b>Kecerdasan Adversity (AQ):</b><br>Keterampilan remaja untuk menjadi tangguh, tahan banting, dan bangkit saat menghadapi krisis.</div>
+                    <div class="infobox info-purple"><b>Kecerdasan Adversity (AQ):</b><br>Bukan sekadar IQ tinggi. AQ adalah keterampilan hidup mutlak bagi remaja untuk menjadi tangguh, tahan banting, dan mampu bangkit dengan cepat (<i>Resilience</i>) saat menghadapi krisis, kegagalan, atau penolakan.</div>
                     
-                    <h3>Gaya Komunikasi</h3>
+                    <h3>Gaya Komunikasi & Resolusi Konflik</h3>
+                    <p>Sering dimanfaatkan teman? Itu karena pola komunikasimu masih keliru. Kenali 3 tipe gaya komunikasi manusia:</p>
                     <ul>
-                        <li><b>Pasif:</b> Mengorbankan hak diri sendiri demi orang lain ("Aku salah, kamu benar").</li>
-                        <li><b>Agresif:</b> Menyakiti orang lain demi tujuan ("Aku benar, kamu salah").</li>
-                        <li><b>ASERTIF:</b> Mengekspresikan perasaan dengan jujur <b>tanpa menyakiti orang lain</b> ("Aku baik-baik saja, kamu baik-baik saja").</li>
+                        <li><b>Pasif (Kalah-Menang):</b> Menekan emosi dan selalu mengorbankan hak/kenyamanan diri sendiri demi orang lain ("Aku salah, kamu benar"). Sangat merugikan mental jangka panjang.</li>
+                        <li><b>Agresif (Menang-Kalah):</b> Memaksa kehendak dan menyakiti orang lain demi tujuan pribadi ("Aku benar, kamu yang bodoh!").</li>
+                        <li><b>ASERTIF (Menang-Menang):</b> Mengekspresikan perasaan dan batasan diri dengan jujur, tegas, dan logis <b>tanpa merendahkan atau menyakiti perasaan orang lain</b> ("Aku memahami kondisimu, tapi maaf aku tidak bisa membantumu hari ini karena jadwalku penuh"). Resolusi konflik yang sangat dewasa.</li>
                     </ul>
                 `,
-                alatTitle: "Timer Fokus: Pomodoro",
+                alatTitle: "Timer Fokus Manajemen: Pomodoro",
                 alatHTML: `
                     <div class="lab-container">
-                        <p style="margin-bottom:15px; font-weight:bold;">Manajemen Waktu: Fokus 25 Menit.</p>
+                        <p style="margin-bottom:15px; font-weight:bold;">Latih manajemen waktu: Fokus bekerja 25 Menit tanpa distraksi, istirahat 5 menit.</p>
                         <div style="font-size:60px; font-weight:900; color:var(--primary); margin-bottom:15px;" id="pom-time">25:00</div>
-                        <button class="btn-lab" onclick="alert('Timer simulasi berjalan. Jauhkan HP-mu sekarang!')">Mulai Fokus</button>
+                        <button class="btn-lab" onclick="alert('Timer simulasi siap. Latih disiplinmu, jauhkan notifikasi HP-mu sekarang juga selama 25 menit ke depan!')">Mulai Fase Fokus</button>
                     </div>
                 `,
                 quiz: [
-                    { q: "Kemampuan remaja untuk bangkit dan tangguh dalam menghadapi hambatan hidup disebut kecerdasan...", opts: ["A. Emotional (EQ)", "B. Adversity (AQ)", "C. Spiritual (SQ)"], ans: 1, exp: "Adversity Quotient adalah ketangguhan mental." },
-                    { q: "Sikap di mana seseorang jujur menolak sesuatu secara logis tanpa menyakiti pihak lain disebut?", opts: ["A. Pasif", "B. Agresif", "C. Asertif"], ans: 2, exp: "Asertif adalah komunikasi Win-Win Solution." },
-                    { q: "Mengalah terus menerus hingga merugikan diri sendiri demi teman adalah contoh perilaku...", opts: ["A. Asertif", "B. Pasif", "C. Pahlawan"], ans: 1, exp: "Sikap pasif memicu beban mental di kemudian hari." }
+                    { q: "Kemampuan mental remaja untuk bangkit dari kegagalan dan tangguh menghadapi hambatan hidup disebut kecerdasan...", opts: ["A. Emotional Quotient (EQ)", "B. Adversity Quotient (AQ)", "C. Spiritual Quotient (SQ)"], ans: 1, exp: "Adversity Quotient adalah fondasi ketangguhan mental calon pemimpin masa depan." },
+                    { q: "Sikap jujur menolak ajakan yang merugikan secara tegas, sopan, namun tanpa menyakiti perasaan pihak lain disebut komunikasi...", opts: ["A. Pasif", "B. Agresif", "C. Asertif"], ans: 2, exp: "Asertif adalah komunikasi cerdas Win-Win Solution." },
+                    { q: "Mengalah terus menerus hingga jadwal belajar diri sendiri hancur demi membantu tugas teman pemalas adalah contoh perilaku...", opts: ["A. Asertif", "B. Pasif", "C. Dermawan"], ans: 1, exp: "Sikap pasif berlebih memicu beban mental (people pleaser) di kemudian hari." }
                 ],
-                misi: ["Latih berkata 'TIDAK' secara Asertif hari ini", "Bantu pekerjaan domestik di rumah", "Belajar 25 Menit penuh tanpa notifikasi HP"]
+                misi: ["Latih berkata 'TIDAK' secara Asertif tanpa rasa bersalah hari ini", "Bantu inisiatif pekerjaan domestik rumah tanpa disuruh", "Belajar sistem Pomodoro 25 Menit murni tanpa notifikasi HP"]
             },
             {
                 id: "inklusif", icon: "🤝", title: "Inklusifitas & Gender", subtitle: "Seks vs Gender",
                 literasi: `
                     <div class="infobox info-blue"><b>Seks (Biologis) vs Gender (Sosial)</b><br>
-                    <b>Seks:</b> Identitas biologis bawaan (Pria punya sperma, Wanita punya sel telur). Mutlak tidak bisa ditukar.<br>
-                    <b>Gender:</b> Konstruksi sosial tentang peran. (Cth: Mencari nafkah, memasak). Peran gender <b>BISA dipertukarkan</b>.</div>
+                    <b>Seks:</b> Identitas biologis ciptaan Tuhan yang dibawa lahir (Laki-laki punya penis/sperma, Perempuan punya rahim/sel telur). Mutlak kodrat dan tidak bisa ditukar.<br>
+                    <b>Gender:</b> Konstruksi sosial dan budaya masyarakat tentang peran sifat. (Cth: Persepsi bahwa memasak itu tugas wanita, atau pria pantang menangis). Peran gender ini <b>BISA dipertukarkan</b> secara fleksibel (pria bisa menjadi chef handal memasak).</div>
                     
-                    <h3>Inklusifitas Remaja GenRe</h3>
-                    <p>Rangkul semua perbedaan. Hentikan <b>Ableism</b> (candaan merendahkan kondisi fisik). Gunakan istilah yang memberdayakan seperti <i>Penyandang Disabilitas, Teman Tuli, Teman Netra</i> (bukan si Bisu atau si Cacat).</p>
+                    <h3>Inklusifitas Remaja GenRe & Disabilitas Tak Kasat Mata</h3>
+                    <p>GenRe merangkul semua perbedaan. Hentikan sikap <b>Ableism</b>. Gunakan istilah yang sopan dan memberdayakan seperti <i>Penyandang Disabilitas, Teman Tuli, Teman Netra, Teman Daksa</i> (Jangan pernah menggunakan istilah jadul seperti Si Bisu, Cacat, atau Tuli huruf kecil).</p>
+                    <p>Pentingnya fasilitas umum ramah: seperti keberadaan <i>Guiding Block</i> (jalan bertekstur kuning di trotoar) untuk Teman Netra dan <i>Ramp</i> (tanjakan kursi roda). Ingat juga, ada <b>Disabilitas Tak Kasat Mata</b> (Invisible Disabilities) seperti autisme, penyakit autoimun, atau ADHD yang tidak terlihat fisiknya, namun penderitanya sangat membutuhkan pemahaman inklusif kita di ruang publik.</p>
                 `,
                 alatTitle: "Kuis Peka Inklusifitas",
                 alatHTML: `
                     <div class="lab-container">
-                        <p style="margin-bottom:15px; font-weight:bold;">Manakah istilah yang beretika?</p>
-                        <button class="btn-lab" style="background:var(--danger);" onclick="alert('SALAH! Istilah ini mengandung stigma Ableism.')">Si Cacat / Si Bisu</button>
-                        <button class="btn-lab" style="background:var(--success);" onclick="alert('BENAR! Ini adalah istilah yang memberdayakan.')">Penyandang Disabilitas / Teman Tuli</button>
+                        <p style="margin-bottom:15px; font-weight:bold;">Manakah penggunaan istilah komunikasi yang beretika?</p>
+                        <button class="btn-lab" style="background:var(--danger);" onclick="alert('SALAH BESAR! Istilah ini merendahkan dan mengandung stigma Ableism yang tebal.')">Si Cacat / Si Bisu / Si Pincang</button>
+                        <button class="btn-lab" style="background:var(--success);" onclick="alert('BENAR SEKALI! Ini adalah istilah berdaya yang diakui komunitas nasional maupun global.')">Penyandang Disabilitas / Teman Tuli / Teman Daksa</button>
                     </div>
                 `,
                 quiz: [
-                    { q: "Manakah pernyataan di bawah ini yang merupakan konsep GENDER (bukan Seks)?", opts: ["A. Laki-laki memproduksi sperma", "B. Perempuan melahirkan", "C. Mencuci piring adalah tugas perempuan"], ans: 2, exp: "Mencuci adalah peran gender yang bisa dilakukan siapapun." },
-                    { q: "Candaan yang mendiskriminasi atau merendahkan penyandang disabilitas disebut...", opts: ["A. Ableism", "B. Rasisme", "C. Seksisme"], ans: 0, exp: "Ableism menyakiti penyandang disabilitas secara mental." },
-                    { q: "Apa sebutan yang paling sopan dan inklusif untuk seseorang yang tidak bisa mendengar?", opts: ["A. Tuna Rungu / Teman Tuli", "B. Orang Bisu", "C. Penderita Cacat"], ans: 0, exp: "Teman Tuli adalah istilah inklusif yang paling diterima saat ini." }
+                    { q: "Manakah pernyataan di bawah ini yang merupakan representasi dari peran GENDER (bukan kodrat Seks biologis)?", opts: ["A. Laki-laki memproduksi sel sperma", "B. Perempuan mengalami menstruasi dan melahirkan", "C. Memasak dan mengurus anak adalah tugas mutlak perempuan"], ans: 2, exp: "Memasak adalah peran konstruksi sosial (Gender) yang sejatinya bisa dilakukan oleh jenis kelamin apapun." },
+                    { q: "Candaan verbal yang sengaja mendiskriminasi atau merendahkan penyandang disabilitas disebut...", opts: ["A. Ableism", "B. Rasisme", "C. Seksisme"], ans: 0, exp: "Ableism menyakiti penyandang disabilitas secara mental." },
+                    { q: "Apa sebutan yang paling sopan, beretika, dan inklusif untuk menyapa seseorang yang tidak bisa mendengar?", opts: ["A. Tuna Rungu / Teman Tuli", "B. Orang Bisu / Si Tuli", "C. Penderita Cacat Telinga"], ans: 0, exp: "Teman Tuli adalah istilah inklusif yang paling diterima dan memberdayakan." }
                 ],
-                misi: ["Gunakan istilah 'Disabilitas' yang benar", "Pahami perbedaan kodrat Biologis dan peran Gender", "Bantu fasilitasi teman yang kesulitan di tempat umum"]
+                misi: ["Gunakan istilah 'Disabilitas' dan 'Teman Tuli' secara sadar", "Pahami perbedaan kodrat mutlak Biologis dan peran fleksibel Gender", "Bantu fasilitasi/buka jalan bagi teman disabilitas di fasilitas umum"]
             },
             {
                 id: "emas", icon: "🇮🇩", title: "Indonesia Emas 2045", subtitle: "Bonus Demografi & SSK",
                 literasi: `
-                    <div class="infobox info-yellow"><b>100 Tahun Kemerdekaan RI:</b><br>Bonus Demografi (banyaknya usia kerja) bisa menjadi <b>Bencana Demografi</b> jika remaja masa kini bodoh, stunting, dan terjerat narkoba.</div>
+                    <div class="infobox info-yellow"><b>Menuju 100 Tahun Kemerdekaan RI:</b><br>Ledakan <b>Bonus Demografi</b> (kondisi jumlah usia produktif kerja jauh melampaui balita dan lansia) bisa menjadi <b>Bencana Demografi</b> yang mengerikan jika remaja masa kini kualitasnya stunting, bodoh, apatis, dan terjerat narkoba!</div>
                     
-                    <h3>Langkah Strategis Pemerintah</h3>
+                    <h3>Langkah Strategis Pemerintah & Tantangan AI</h3>
                     <ul>
-                        <li><b>PK-25:</b> Pemutakhiran Pendataan Keluarga 2025 (22 Juli - 21 Agustus) oleh BKKBN untuk mendata kemiskinan dan demografi.</li>
-                        <li><b>SSK (Sekolah Siaga Kependudukan):</b> Kurikulum yang mengintegrasikan materi kependudukan, KB, dan keluarga ke dalam mata pelajaran sekolah.</li>
+                        <li><b>PK-25:</b> Pemutakhiran Pendataan Keluarga 2025 (Digelar 22 Juli - 21 Agustus) oleh kader BKKBN untuk mendata angka akurat kemiskinan dan memproyeksi demografi riil.</li>
+                        <li><b>SSK (Sekolah Siaga Kependudukan):</b> Program kurikulum yang secara cerdas mengintegrasikan materi kependudukan, bahaya pernikahan dini, dan KB ke dalam mata pelajaran sekolah formal.</li>
+                        <li><b>Adaptasi Teknologi (AI):</b> Di tahun 2045, kompetisi kalian bukan lagi antusias manusia, melainkan Kecerdasan Buatan (AI). Keterampilan <i>Critical Thinking</i> (Berpikir Kritis), empati, dan kepemimpinan adalah soft-skill yang tidak akan bisa digantikan oleh robot.</li>
                     </ul>
                 `,
                 alatTitle: "Kalkulator Usia Produktif",
                 alatHTML: `
                     <div class="lab-container">
-                        <p style="margin-bottom:15px; font-weight:bold;">Berapa usiamu di tahun 2045?</p>
-                        <input type="number" id="emas-thn" class="lab-input" placeholder="Tahun Kelahiranmu">
-                        <button class="btn-lab" onclick="calcEmas()">Cek Masa Depan</button>
+                        <p style="margin-bottom:15px; font-weight:bold;">Masukkan tahun kelahiranmu. Cek berapa usiamu di puncak keemasan 2045 nanti?</p>
+                        <input type="number" id="emas-thn" class="lab-input" placeholder="Contoh: 2007">
+                        <button class="btn-lab" onclick="calcEmas()">Cek Posisi Masa Depan</button>
                         <div id="res-emas" class="lab-result"></div>
                     </div>
                 `,
                 quiz: [
-                    { q: "Apa nama program pendataan keluarga serentak BKKBN pada Juli-Agustus 2025?", opts: ["A. PK-25", "B. SENSUS-25", "C. SIGA"], ans: 0, exp: "Pemutakhiran Pendataan Keluarga 2025 (PK-25)." },
-                    { q: "Program integrasi materi kependudukan ke dalam kurikulum sekolah disebut...", opts: ["A. Sekolah Ramah Anak", "B. SSK (Sekolah Siaga Kependudukan)", "C. PIK-R"], ans: 1, exp: "SSK membekali wawasan demografi bagi siswa." },
-                    { q: "Kondisi di mana jumlah penduduk usia produktif jauh lebih besar dari usia non-produktif disebut?", opts: ["A. Ledakan Penduduk", "B. Bonus Demografi", "C. Inflasi Demografi"], ans: 1, exp: "Bonus Demografi adalah peluang besar menuju 2045." }
+                    { q: "Apa nama program pendataan keluarga serentak yang dilakukan BKKBN pada periode Juli-Agustus 2025?", opts: ["A. PK-25 (Pendataan Keluarga)", "B. SENSUS PUSAT 25", "C. SIGA NASIONAL"], ans: 0, exp: "Pemutakhiran Pendataan Keluarga 2025 (PK-25) penting sebagai basis data pengentasan kemiskinan." },
+                    { q: "Program nasional yang mengintegrasikan wawasan demografi ke dalam kurikulum pembelajaran sekolah disebut...", opts: ["A. Sekolah Ramah Anak (SRA)", "B. SSK (Sekolah Siaga Kependudukan)", "C. Ekstrakurikuler PIK-R"], ans: 1, exp: "SSK membekali wawasan kependudukan langsung dari bangku kelas melalui guru mapel." },
+                    { q: "Kondisi emas di mana rasio jumlah penduduk usia produktif/pekerja jauh lebih besar dari tanggungan usia non-produktif disebut?", opts: ["A. Ledakan Penduduk Tak Terkendali", "B. Bonus Demografi", "C. Inflasi Demografi"], ans: 1, exp: "Bonus Demografi adalah peluang percepatan ekonomi terbesar suatu bangsa." }
                 ],
-                misi: ["Pelajari 1 *soft-skill* teknologi minggu ini", "Ikuti info resmi BKKBN soal PK-25", "Siapkan fisik dan mentalmu memimpin 2045"]
+                misi: ["Pelajari minimal 1 soft-skill teknologi/AI baru minggu ini", "Ikuti info resmi Instagram BKKBN terkait hasil PK-25", "Siapkan fisik, literasi, dan mentalmu memimpin tahun 2045!"]
             },
             {
                 id: "kementerian", icon: "🏛️", title: "Kementerian & ASTRAFERA", subtitle: "Wawasan Birokrasi",
                 literasi: `
-                    <div class="infobox info-blue"><b>Rebranding Era 2024/2025:</b><br>BKKBN menjadi <b>Kementerian Kependudukan dan Pembangunan Keluarga RI</b> dipimpin Menteri <b>Dr. H. Wihaji</b> dan Wamen <b>Ratu Ayu Isyana Bagoes Oka</b>. Tagline: <i>"Berencana itu Keren! 2 Anak Lebih Sehat!"</i>.</div>
+                    <div class="infobox info-blue"><b>Rebranding Era Baru 2024/2025:</b><br>BKKBN telah bertransformasi menjadi <b>Kementerian Kependudukan dan Pembangunan Keluarga RI</b> di bawah kepemimpinan Menteri <b>Dr. H. Wihaji, S.Ag., M.Pd.</b> dan Wamen <b>Ratu Ayu Isyana Bagoes Oka</b>. Tagline terbaru menggaung: <i>"Berencana itu Keren! 2 Anak Lebih Sehat!"</i>.</div>
                     
-                    <h3>5 Program Quick Wins (Prioritas)</h3>
+                    <h3>5 Program Quick Wins (Super Prioritas) Menteri:</h3>
                     <ol>
-                        <li><b>TAMASYA:</b> Taman Asuh Sayang Anak (Daycare psikolog).</li>
-                        <li><b>Lansia Berdaya:</b> Homecare lansia.</li>
+                        <li><b>TAMASYA:</b> Taman Asuh Sayang Anak (Fasilitas Daycare nasional dengan standar psikolog anak).</li>
+                        <li><b>Lansia Berdaya:</b> Layanan Homecare terpadu dan perhatian nutrisi bagi penduduk lansia (Aging population).</li>
                         <li><b>GATI:</b> Gerakan Ayah Teladan.</li>
-                        <li><b>AI-SuperApps SAKINA:</b> Layanan konsultasi keluarga digital.</li>
-                        <li><b>GENTING:</b> Gerakan Orang Tua Asuh Cegah Stunting.</li>
+                        <li><b>AI-SuperApps SAKINA:</b> Pusat layanan curhat dan konsultasi ketahanan keluarga berbasis digital canggih.</li>
+                        <li><b>GENTING:</b> Gerakan Orang Tua Asuh Cegah Stunting masif.</li>
                     </ol>
 
-                    <h3>Tahapan PIK-R & Kabinet ASTRAFERA</h3>
-                    <p>PIK-R dibagi 3 jenjang: <b>TUMBUH, TEGAK, TEGAR</b>. Materi "Tentang Kita" dibagi usia: <i>Berani (10-14), Beraksi (15-19), Berkolaborasi (20-24)</i>.</p>
-                    <p>Visi <b>Adib Al Hakim (Kabinet ASTRAFERA)</b>: Berdaya, Berdampak, Berkolaborasi melalui program <i>Everyone Connect</i> dan <i>Raya Youth Care</i>.</p>
+                    <h3>Tahapan PIK-R & Visi Kabinet ASTRAFERA</h3>
+                    <p>Dalam birokrasi GenRe, PIK-R dievaluasi dengan 3 jenjang kedewasaan institusi: <b>TUMBUH (Awal), TEGAK (Berkembang), TEGAR (Mandiri)</b>. Dan materi ajar "Tentang Kita" disesuaikan usia: <i>Berani (10-14 Th), Beraksi (15-19 Th), Berkolaborasi (20-24 Th)</i>.</p>
+                    <p>Secara khusus, komitmen <b>Adib Al Hakim (Melalui Kabinet ASTRAFERA)</b> membawa trilogi gerakan: <b>Berdaya, Berdampak, Berkolaborasi</b> melalui eksekusi program lapangan <i>Everyone Connect</i> (Pemerataan info digital) dan <i>Raya Youth Care</i> (Empati turun ke jalan).</p>
                 `,
-                alatTitle: "Cek Fakta Birokrasi",
+                alatTitle: "Cek Fakta Gerakan GenRe",
                 alatHTML: `
                     <div class="lab-container">
-                        <p style="margin-bottom:15px; font-weight:bold;">Perbedaan Mendasar Triad KRR vs Salam GenRe?</p>
-                        <button class="btn-lab" style="background:var(--success);" onclick="alert('TEPAT! Triad KRR (Seksualitas, HIV, NAPZA) adalah masalahnya, sedangkan Salam GenRe adalah gerakan pencegahannya.')">Klik Lihat Jawaban</button>
+                        <p style="margin-bottom:15px; font-weight:bold;">Tahukah kamu Perbedaan Mendasar Triad KRR vs Salam GenRe?</p>
+                        <button class="btn-lab" style="background:var(--success);" onclick="alert('TEPAT! Triad KRR (Seksualitas Pranikah, NAPZA, HIV/AIDS) adalah MASALAH atau Ancaman utamanya. Sedangkan Salam GenRe (Cegah pernikahan dini, cegah seks pranikah, jauhi napza) adalah PERILAKU PENCEGAHANNYA.')">Klik Lihat Penjelasan Detail</button>
                     </div>
                 `,
                 quiz: [
-                    { q: "Siapa Menteri Kependudukan dan Pembangunan Keluarga saat ini?", opts: ["A. Dr. (H.C.) dr. Hasto Wardoyo", "B. Dr. H. Wihaji, S.Ag., M.Pd.", "C. Nadiem Makarim"], ans: 1, exp: "Dr. H. Wihaji menjabat pasca perubahan status BKKBN." },
-                    { q: "Apa nama aplikasi AI konsultasi milik kementerian yang mirip seperti SABDA?", opts: ["A. SAKINA", "B. SIGA", "C. ELZIMIL"], ans: 0, exp: "Super Apps SAKINA." },
-                    { q: "Urutan tahapan organisasi PIK Remaja yang benar adalah...", opts: ["A. Tumbuh, Tegak, Tegar", "B. Tumbuh, Tegar, Tegak", "C. Pemula, Menengah, Mahir"], ans: 0, exp: "Tumbuh (Awal) ➔ Tegak ➔ Tegar (Mandiri)." }
+                    { q: "Siapa nama Menteri Kependudukan dan Pembangunan Keluarga RI saat ini?", opts: ["A. Dr. (H.C.) dr. Hasto Wardoyo", "B. Dr. H. Wihaji, S.Ag., M.Pd.", "C. Nadiem Makarim"], ans: 1, exp: "Dr. H. Wihaji menjabat pasca perubahan status institusi BKKBN." },
+                    { q: "Apa nama aplikasi AI layanan konsultasi resmi milik kementerian?", opts: ["A. SAKINA (Super Apps)", "B. SIGA (Sistem Informasi)", "C. ELZIMIL"], ans: 0, exp: "Super Apps SAKINA disiapkan untuk menjangkau keluarga milenial secara digital." },
+                    { q: "Urutan tahapan kemandirian organisasi PIK Remaja dari bawah ke atas yang benar adalah...", opts: ["A. Tumbuh ➔ Tegak ➔ Tegar", "B. Tumbuh ➔ Tegar ➔ Tegak", "C. Pemula ➔ Menengah ➔ Mahir"], ans: 0, exp: "Tumbuh (Awal pendirian) ➔ Tegak (Mulai aktif) ➔ Tegar (Fasilitas mandiri dan rujukan)." }
                 ],
-                misi: ["Hafalkan 5 Quick Wins Menteri Wihaji", "Hafalkan visi misi Kabinet ASTRAFERA", "Praktikkan Salam GenRe 3 Jari dengan benar"]
+                misi: ["Hafalkan 5 Program Quick Wins Menteri Wihaji", "Hafalkan visi Berdaya, Berdampak, Berkolaborasi Kabinet ASTRAFERA", "Praktikkan Salam GenRe 3 Jari dengan lantang!"]
+            },
+            {
+                id: "lgbtq", icon: "🌈", title: "Isu LGBTQ+", subtitle: "Hukum, Sosial & GenRe",
+                literasi: `
+                    <div class="infobox info-purple"><b>Pendekatan Bimbingan & Konseling (GenRe):</b><br>Sebagai Konselor Sebaya, kita wajib berprinsip pada rasa empati, merangkul tanpa menghakimi (non-judgmental), dan mencegah segala bentuk diskriminasi serta perundungan (bullying) di sekolah maupun kampus.</div>
+                    
+                    <h3>Pandangan Sosial & Kesehatan Mental</h3>
+                    <p>Topik LGBTQ+ (Lesbian, Gay, Bisexual, Transgender, Queer) sering menjadi perdebatan intens di masyarakat. Faktanya, remaja yang mengalami kebingungan orientasi identitas sangat rentan mengalami tekanan psikologis berat, stres, depresi, hingga keinginan menyakiti diri akibat tingginya stigma, penolakan keluarga, dan pengucilan. Sebagai pendidik sebaya dari BAKTERA, peranmu adalah memberikan <i>Safe Space</i> (Ruang aman untuk bercerita), mencegah mereka mencari 'pelarian' ke hal negatif (narkoba), dan memastikan kesehatan mentalnya stabil.</p>
+                    
+                    <h3>Kacamata Hukum Positif Indonesia</h3>
+                    <p>Ingat, setiap warga negara, siapapun itu, <b>berhak dilindungi Hak Asasi Manusia-nya (HAM) dari segala bentuk kekerasan fisik maupun verbal</b> berdasar UUD 1945. Tidak ada seorang pun yang pantas di-bully apalagi disiksa. Namun, menyangkut legalitas status, <b>UU Perkawinan No. 1 Tahun 1974</b> secara eksplisit menyatakan bahwa perkawinan yang sah diakui negara hanyalah antara seorang Pria dan seorang Wanita berdasarkan hukum agama masing-masing.</p>
+                    
+                    <h3>Sikap Remaja GenRe (BAKTERA)</h3>
+                    <ul>
+                        <li><b>Edukasi Kesehatan (Kespro):</b> Berfokus memberikan edukasi pencegahan penularan IMS dan HIV/AIDS secara objektif tanpa stigma.</li>
+                        <li><b>Anti-Kekerasan:</b> Tidak membenarkan sama sekali tindakan main hakim sendiri atau kekerasan berbasis prasangka (Hate crime).</li>
+                        <li><b>Batas Konseling Sebaya:</b> Jika ada teman curhat, dengarkan dengan asertif (jangan menceramahi). Setelah emosinya stabil, arahkan ia ke pihak profesional (Psikolog/Psikiater/Guru BK) untuk pendampingan yang jauh lebih kapabel, bukan ditinggalkan atau dihakimi.</li>
+                    </ul>
+                `,
+                alatTitle: "Simulasi Kasus: Respons Konselor Sebaya",
+                alatHTML: `
+                    <div class="lab-container">
+                        <p style="margin-bottom:15px; font-weight:bold;">Seorang teman dekat bercerita sambil menangis parah bahwa ia merasa kebingungan identitas dan baru saja di-bully habis-habisan (dikucilkan) di grup kelas. Apa tindakan utamamu sebagai Konselor GenRe?</p>
+                        <button class="btn-lab" style="background:var(--danger); font-size:14px; margin:5px;" onclick="alert('SALAH! Menghakimi (judgement), menceramahi, apalagi menjauhinya saat mentalnya sedang hancur hanya akan membuatnya merasa sendirian dan memicu risiko depresi/suicide yang fatal.')">Menceramahi & Menjauhi</button>
+                        <button class="btn-lab" style="background:var(--success); font-size:14px; margin:5px;" onclick="alert('SANGAT BENAR! Validasi perasaannya dahulu agar ia tenang. Lindungi ia dari pelaku bullying, jadilah Safe Space yang merangkul pertemanannya, lalu pelan-pelan arahkan ia ke profesional (Psikolog/Guru BK) yang memiliki kapasitas penuh.')">Dengar Empati, Lindungi & Arahkan Profesional</button>
+                    </div>
+                `,
+                quiz: [
+                    { q: "Menurut UU Perkawinan No. 1 Tahun 1974 di Indonesia, asas perkawinan yang sah dan diakui negara adalah...", opts: ["A. Antara seorang pria dan seorang wanita", "B. Antara siapa saja yang saling setuju", "C. Bisa dilakukan tanpa memandang jenis kelamin"], ans: 0, exp: "Hukum positif Indonesia (UU No. 1/1974) mengacu teguh pada norma agama dimana pernikahan sah mutlak antara pria dan wanita." },
+                    { q: "Jika ada teman sebaya yang curhat tentang kebingungan identitas orientasinya kepadamu, prinsip bimbingan konseling yang paling tepat adalah...", opts: ["A. Menyebarkan ceritanya ke teman lain", "B. Mendengarkan secara empatik tanpa menghakimi, lalu menyarankan bimbingan profesional", "C. Langsung memusuhinya karena berbeda"], ans: 1, exp: "Konselor GenRe harus selalu bertindak sebagai Safe Space dan merujuk kasus kompleks ke tangan profesional." },
+                    { q: "Mengapa kelompok remaja dalam lingkup rentan ini memiliki rasio depresi klinis yang sangat tinggi?", opts: ["A. Karena mereka sengaja mencari perhatian", "B. Akibat beban stigma sosial, penolakan masif dari keluarga, dan tingginya tingkat perundungan (Bullying)", "C. Karena mereka kurang bermain di luar"], ans: 1, exp: "Stigma, bullying di lingkungan sekolah, dan penolakan figur keluarga adalah faktor utama hancurnya pertahanan mental seseorang." }
+                ],
+                misi: ["Hentikan segera siklus perundungan (bullying) pada siapapun tanpa terkecuali", "Berlatih menjadi pendengar (Safe Space) asertif bagi teman yang tertekan", "Pahami batas wewenang konselor sebaya; ketahui kapan harus merujuk pada psikolog"]
             }
-        ]; // Total 12 Modul (TIDAK ADA YANG DIPOTONG)
+        ]; // Total 13 Modul (Termasuk LGBTQ+)
 
         // --- 2. CORE LOGIC UI & STATE ---
         let currentExp = 0;
@@ -577,11 +633,21 @@
         function initDashboard() {
             const grid = document.getElementById('topics-grid');
             db.forEach(t => {
+                // Modifikasi Dinamis Khusus Warna Merah untuk Kekerasan Seksual
+                let extraStyle = "";
+                let textStyle = "";
+                let subStyle = "";
+                if (t.id === "seksual") {
+                    extraStyle = "background: #fff1f2; border: 2px solid var(--danger); box-shadow: 0 8px 20px rgba(225, 29, 72, 0.2);";
+                    textStyle = "color: var(--danger);";
+                    subStyle = "background: #ffe4e6; color: var(--danger);";
+                }
+                
                 grid.innerHTML += `
-                    <div class="topic-card" onclick="openWorkspace('${t.id}')">
-                        <span class="t-icon">${t.icon}</span>
-                        <div class="t-title">${t.title}</div>
-                        <div class="t-subtitle">${t.subtitle}</div>
+                    <div class="topic-card" style="` + extraStyle + `" onclick="openWorkspace('` + t.id + `')">
+                        <span class="t-icon">` + t.icon + `</span>
+                        <div class="t-title" style="` + textStyle + `">` + t.title + `</div>
+                        <div class="t-subtitle" style="` + subStyle + `">` + t.subtitle + `</div>
                     </div>`;
             });
         }
@@ -590,7 +656,7 @@
 
         function openWorkspace(id) {
             const data = db.find(t => t.id === id);
-            document.getElementById('ws-title').innerHTML = `${data.icon} ${data.title}`;
+            document.getElementById('ws-title').innerHTML = data.icon + " " + data.title;
             document.getElementById('ws-literasi-content').innerHTML = data.literasi;
             document.getElementById('ws-alat-title').innerText = data.alatTitle;
             document.getElementById('ws-alat-content').innerHTML = data.alatHTML;
@@ -602,7 +668,7 @@
                 misiList.innerHTML += `
                     <div class="quest-card" onclick="completeQuest(this)">
                         <input type="checkbox" class="quest-checkbox" onclick="event.stopPropagation(); completeQuest(this.parentNode)">
-                        <span style="font-weight:700; flex:1;">${m}</span>
+                        <span style="font-weight:700; flex:1;">` + m + `</span>
                     </div>`;
             });
 
@@ -610,7 +676,7 @@
             activeQuizState = { topicId: id, currentQ: 0, score: 0, questions: data.quiz };
             renderQuiz();
 
-            document.getElementById('workspace').style.display = 'block'; // Tampilkan full
+            document.getElementById('workspace').style.display = 'block';
             document.querySelectorAll('.tab-btn')[0].click();
             window.scrollTo(0,0);
         }
@@ -636,10 +702,10 @@
             if(currentExp >= 100) {
                 currentExp = currentExp - 100;
                 currentLevel++;
-                alert(`🎉 LUAR BIASA! Kamu naik pangkat menjadi: ${Ranks[Math.min(currentLevel-1, 4)]}! Wawasanmu semakin tajam.`);
+                alert('🎉 LUAR BIASA! Kamu naik pangkat menjadi: ' + Ranks[Math.min(currentLevel-1, 4)] + '! Wawasan BAKTERA-mu semakin tajam.');
             }
-            document.getElementById('exp-fill').style.width = `${currentExp}%`;
-            document.getElementById('exp-text').innerText = `${currentExp} / 100 EXP`;
+            document.getElementById('exp-fill').style.width = currentExp + "%";
+            document.getElementById('exp-text').innerText = currentExp + " / 100 EXP";
             document.getElementById('rank-text').innerText = Ranks[Math.min(currentLevel-1, 4)];
         }
 
@@ -651,7 +717,7 @@
             if(state.currentQ >= state.questions.length) {
                 container.innerHTML = `
                     <div style="text-align:center; padding:40px; background:#f0fdf4; border:2px dashed var(--secondary); border-radius:20px;">
-                        <h2 style="color:var(--secondary); margin-bottom:10px;">Skor Akhir: ${state.score} / ${state.questions.length}</h2>
+                        <h2 style="color:var(--secondary); margin-bottom:10px;">Skor Akhir: ` + state.score + ` / ` + state.questions.length + `</h2>
                         <p style="font-weight:600; margin-bottom:20px;">Pemahamanmu tentang modul ini sangat solid!</p>
                         <button class="btn-lab" onclick="addExp(30); this.disabled=true; this.innerHTML='Bonus +30 EXP Diterima ✅';">Klaim Bonus EXP</button>
                     </div>`;
@@ -661,14 +727,14 @@
             const qData = state.questions[state.currentQ];
             let optsHTML = "";
             qData.opts.forEach((opt, index) => {
-                optsHTML += `<button class="quiz-opt" id="opt-${index}" onclick="checkAnswer(${index}, ${qData.ans}, '${qData.exp.replace(/'/g, "\\'")}')">${opt}</button>`;
+                optsHTML += `<button class="quiz-opt" id="opt-` + index + `" onclick="checkAnswer(` + index + `, ` + qData.ans + `, '` + qData.exp.replace(/'/g, "\\'") + `')">` + opt + `</button>`;
             });
 
             container.innerHTML = `
                 <div style="background:white; border:1px solid var(--border); padding:35px; border-radius:20px; box-shadow:0 10px 20px rgba(0,0,0,0.03);">
-                    <div style="font-size:13px; color:var(--primary); font-weight:800; letter-spacing:2px; margin-bottom:15px;">PERTANYAAN ${state.currentQ + 1} DARI ${state.questions.length}</div>
-                    <div style="font-size:20px; font-weight:800; margin-bottom:25px; line-height:1.5;">${qData.q}</div>
-                    ${optsHTML}
+                    <div style="font-size:13px; color:var(--primary); font-weight:800; letter-spacing:2px; margin-bottom:15px;">PERTANYAAN ` + (state.currentQ + 1) + ` DARI ` + state.questions.length + `</div>
+                    <div style="font-size:20px; font-weight:800; margin-bottom:25px; line-height:1.5;">` + qData.q + `</div>
+                    ` + optsHTML + `
                     <div id="quiz-feedback" style="margin-top:20px; padding:20px; border-radius:15px; font-weight:600; display:none;"></div>
                     <button id="next-q-btn" class="btn-lab" style="display:none; width:100%; margin-top:20px;" onclick="nextQuestion()">Pertanyaan Selanjutnya ➔</button>
                 </div>
@@ -683,15 +749,15 @@
             feedback.style.display = 'block';
 
             if(selectedIndex === correctIndex) {
-                document.getElementById(`opt-${selectedIndex}`).classList.add('correct');
+                document.getElementById('opt-' + selectedIndex).classList.add('correct');
                 feedback.style.background = '#dcfce7'; feedback.style.color = '#15803d';
-                feedback.innerHTML = `<b>✅ BENAR!</b><br>${explanation}`;
+                feedback.innerHTML = `<b>✅ BENAR!</b><br>` + explanation;
                 activeQuizState.score++;
             } else {
-                document.getElementById(`opt-${selectedIndex}`).classList.add('wrong');
-                document.getElementById(`opt-${correctIndex}`).classList.add('correct');
+                document.getElementById('opt-' + selectedIndex).classList.add('wrong');
+                document.getElementById('opt-' + correctIndex).classList.add('correct');
                 feedback.style.background = '#fef2f2'; feedback.style.color = '#e11d48';
-                feedback.innerHTML = `<b>❌ KURANG TEPAT!</b><br>${explanation}`;
+                feedback.innerHTML = `<b>❌ KURANG TEPAT!</b><br>` + explanation;
             }
             document.getElementById('next-q-btn').style.display = 'block';
         }
@@ -705,7 +771,7 @@
             if(lila) {
                 res.style.display = "block";
                 res.innerHTML = `<div style="padding:20px; border-left:5px solid ${lila < 23.5 ? 'var(--danger)' : 'var(--success)'}; background:white; border-radius:10px; font-weight:600;">
-                                 LILA: ${lila} cm. ${lila < 23.5 ? '<span style="color:var(--danger)">⚠️ Risiko KEK! Wajib asupan protein hewani.</span>' : '<span style="color:var(--success)">✅ Normal! Rahim sehat untuk masa depan.</span>'}</div>`;
+                                 LILA: ${lila} cm. ${lila < 23.5 ? '<span style="color:var(--danger)">⚠️ Risiko KEK! Wajib asupan protein hewani & cegah anemia.</span>' : '<span style="color:var(--success)">✅ Normal! Gizi baik untuk masa depan.</span>'}</div>`;
             }
         }
 
@@ -713,13 +779,13 @@
             const thn = parseInt(document.getElementById('emas-thn').value);
             if(thn) {
                 document.getElementById('res-emas').style.display = 'block';
-                document.getElementById('res-emas').innerHTML = `Di 2045, kamu berusia <b>${2045 - thn} Tahun</b>. Waktunya memimpin!`;
+                document.getElementById('res-emas').innerHTML = 'Di tahun 2045, kamu akan berusia <b>' + (2045 - thn) + ' Tahun</b>. Bersiaplah memimpin bangsa!';
             }
         }
 
         // --- 5. AI SAKINA SYSTEM ---
-        const API_KEY = "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";
-        const sysPrompt = `Kamu adalah Sakina, AI SABDA buatan Mas Adib Al Hakim (Mahasiswa Ilmu Hukum Unila 2025, Duta GenRe). Kamu menguasai semua PDF GenRe (PP TUNAS 17/2025, GGL 4.1.5, LILA 23.5cm, 10 Dimensi Nikah, 7 Tahap NAPZA, ARV HIV, Bystander Effect, Kabinet ASTRAFERA). Jawab pertanyaan remaja dengan empati Bimbingan Konseling dan logika Hukum. Pakai bahasa gaul (kamu, aku).`;
+        const API_KEY = "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";
+        const sysPrompt = "Kamu adalah Sakina, AI BAKTERA (Barisan dan Konseling Terencana) buatan Mas Adib Al Hakim (Mahasiswa Ilmu Hukum Unila 2025, Duta GenRe). Kamu menguasai semua PDF GenRe (PP TUNAS 17/2025, GGL 4.1.5, LILA 23.5cm, 10 Dimensi Nikah, 7 Tahap NAPZA, ARV HIV, Hukum Perkawinan, Isu LGBTQ+, Kabinet ASTRAFERA). Jawab pertanyaan remaja dengan empati tinggi Bimbingan Konseling dan ketegasan logika Hukum. Gunakan bahasa kasual (kamu, aku).";
         
         async function sendAI() {
             const input = document.getElementById('chat-input');
@@ -727,24 +793,26 @@
             if(!txt) return;
             
             const msgBox = document.getElementById('chat-messages');
-            msgBox.innerHTML += `<div style="background:var(--primary); color:white; padding:15px; border-radius:15px; align-self:flex-end; max-width:85%; font-weight:500;">${txt}</div>`;
+            msgBox.innerHTML += `<div style="background:var(--primary); color:white; padding:15px; border-radius:15px; align-self:flex-end; max-width:85%; font-weight:500;">` + txt + `</div>`;
             input.value = "";
             msgBox.scrollTop = msgBox.scrollHeight;
 
-            const typingId = `typ-${Date.now()}`;
-            msgBox.innerHTML += `<div id="${typingId}" style="background:white; border:1px solid var(--border); padding:15px; border-radius:15px; align-self:flex-start; font-style:italic; color:var(--text-muted);">Sakina mengetik...</div>`;
+            const typingId = 'typ-' + Date.now();
+            msgBox.innerHTML += `<div id="` + typingId + `" style="background:white; border:1px solid var(--border); padding:15px; border-radius:15px; align-self:flex-start; font-style:italic; color:var(--text-muted);">Sakina mengetik...</div>`;
             msgBox.scrollTop = msgBox.scrollHeight;
 
             try {
                 const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${API_KEY}` },
+                    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + API_KEY },
                     body: JSON.stringify({ model: 'llama-3.1-8b-instant', messages: [{role:'system', content: sysPrompt}, {role:'user', content: txt}] })
                 });
                 const data = await res.json();
                 document.getElementById(typingId).remove();
-                if(data.choices) msgBox.innerHTML += `<div style="background:white; border:1px solid var(--border); padding:15px; border-radius:15px; align-self:flex-start; max-width:90%; font-weight:500; line-height:1.6;">${data.choices[0].message.content}</div>`;
-            } catch(e) { document.getElementById(typingId).innerHTML = "Koneksi terputus."; }
+                if(data.choices) msgBox.innerHTML += `<div style="background:white; border:1px solid var(--border); padding:15px; border-radius:15px; align-self:flex-start; max-width:90%; font-weight:500; line-height:1.6;">` + data.choices[0].message.content + `</div>`;
+            } catch(e) { 
+                document.getElementById(typingId).innerHTML = "Koneksi ke server AI terputus. Silakan coba lagi."; 
+            }
             msgBox.scrollTop = msgBox.scrollHeight;
         }
 
